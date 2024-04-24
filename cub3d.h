@@ -8,4 +8,9 @@
 # include "parsing.h"
 # include "./MLX42.h"
 
+typedef struct game
+{
+    void    *mlx_ptr;
+}   t_game;
+
 #endif
