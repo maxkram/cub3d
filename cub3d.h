@@ -104,5 +104,13 @@ void	pressed_key(void *param);
 void	render_3d(void *param);
 bool	start_parsing(int ac, char **av, t_parse *parse);
 int		free_struct(t_parse *parse);
+float	max_distance(int map_width, int map_height);
+int		tab_len(char **tab);
+void	init_texture(t_game *game, t_parse *parse);
+void	init_render(t_game *game);
+void	init_draw_ns(t_game *game);
+void	init_draw_oe(t_game *game);
+void	*ft_memset(void *b, int c, size_t len);
+void	print_floor_cellar(t_game *game);
 
 #endif

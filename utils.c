@@ -26,3 +26,27 @@ size_t	ft_strlen(const char *s)
 		x++;
 	return (x);
 }
+
+int	tab_len(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+		i++;
+	return (i);
+}
+
+void	*ft_memset(void *b, int c, size_t len)
+{
+	char	*str;
+
+	str = b;
+	while (len)
+	{
+		*str = (unsigned char)c;
+		str++;
+		len--;
+	}
+	return (b);
+}
