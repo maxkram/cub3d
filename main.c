@@ -44,8 +44,8 @@ int main(int ac, char **av)
 
 	if (ac != 2)
 		return (printf("Error\n"), 0);
-	if (verif_cub(av[1]))
-		return (ft_printf("Error\n"));
+	if (test_cub(av[1]))
+		return (printf("Error\n"));
 	parse = ft_calloc((sizeof(t_parse)), 1);
 	if (start_parsing(ac, av, parse) == false)
 		return (free_struct(parse));
