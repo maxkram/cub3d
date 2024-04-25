@@ -1,5 +1,22 @@
 #include "./cub3d.h"
 
+void free_texture(char* texture) {
+    if (texture != NULL)
+        free(texture);
+}
+
+int free_struct(t_parse *parse)
+{
+    free_texture(parse->texture_ea);
+    free_texture(parse->texture_no);
+    free_texture(parse->texture_so);
+    free_texture(parse->texture_we);
+    free_texture(parse->value_rgb_c);
+    free_texture(parse->value_rgb_f);
+    free(parse);
+    return 1;
+}
+
 void	init_render(t_game *game)
 {
 	game->render = ft_calloc(sizeof(t_render), 1);

@@ -50,3 +50,8 @@ void	*ft_memset(void *b, int c, size_t len)
 	}
 	return (b);
 }
+
+int	color_pixel(int r, int g, int b, int a)
+{
+	return (r << 24 | g << 16 | b << 8 | a);
+}

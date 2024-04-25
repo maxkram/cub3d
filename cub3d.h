@@ -112,5 +112,10 @@ void	init_draw_ns(t_game *game);
 void	init_draw_oe(t_game *game);
 void	*ft_memset(void *b, int c, size_t len);
 void	print_floor_cellar(t_game *game);
+int		color_pixel(int r, int g, int b, int a);
+void	draw_vertical_column_ns(t_game *game, int x, int y);
+void	draw_vertical_column_oe(t_game *game, int x, int y);
+void	draw_vertical_column(t_game *game, int x, int y, int color);
+int		ree_struct(t_parse *parse);
 
 #endif
