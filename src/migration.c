@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:10:30 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/29 01:10:31 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/04/29 03:13:39 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,24 @@
 
 void	migrate_player_direction(t_file_data *file_data, t_data *render_data)
 {
-	int	degrees;
+	int		degrees;
+	char	direction;
 
 	degrees = 0;
-	if (file_data->player_spawn_direction[0] == 'N')
-		degrees = 0;
-	else if (file_data->player_spawn_direction[0] == 'E')
+	direction = file_data->player_spawn_direction[0];
+	if (direction == 'E')
 		degrees = 90;
-	else if (file_data->player_spawn_direction[0] == 'S')
+	else if (direction == 'S')
 		degrees = 180;
-	else if (file_data->player_spawn_direction[0] == 'W')
+	else if (direction == 'W')
 		degrees = 270;
 	init_player_dir_plane(render_data, degrees, PLAYER_FOV);
 }
 
-static unsigned int
-	migrate_colors_to_rgba(
-		unsigned int r, unsigned int g, unsigned int b, unsigned int a)
+static unsigned int	migrate_colors_to_rgba(
+	unsigned int r, unsigned int g, unsigned int b, unsigned int a)
 {
-	return (r << 24 | g << 16 | b << 8 | a);
+	return ((r << 24) | (g << 16) | (b << 8) | a);
 }
 
 void	exit_parsing(t_file_data *file_data, int return_value)
@@ -42,9 +41,7 @@ void	exit_parsing(t_file_data *file_data, int return_value)
 	exit(EXIT_FAILURE);
 }
 
-void
-	exit_mlx_parsing(t_file_data *file_data,
-		int return_value, mlx_t *mlx)
+void	exit_mlx_parsing(t_file_data *file_data, int return_value, mlx_t *mlx)
 {
 	mlx_terminate(mlx);
 	exit_parsing(file_data, return_value);
