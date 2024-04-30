@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 00:00:39 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/29 00:17:38 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/04/30 02:16:42 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+int     ft_isspace(int c);
 int		ft_isdigit(int c);
 size_t	ft_strlen(const char *s);
 void	ft_bzero(void *s, size_t n);

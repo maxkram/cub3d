@@ -6,7 +6,7 @@
 #    By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/29 00:12:29 by mkramer           #+#    #+#              #
-#    Updated: 2024/04/29 00:17:20 by mkramer          ###   ########.fr        #
+#    Updated: 2024/04/30 02:13:48 by mkramer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ CFLGS = -Wall -Wextra -Werror -Wpedantic -Wunreachable-code -Wtype-limits
 COMPILE = $(CC) $(CFLGS) -c
 AR = ar rucs $(NAME) $(OBJS)
 
-SRCS	=	basic/ft_isdigit.c \
+SRCS	=	basic/ft_isspace.c \
+			basic/ft_isdigit.c \
 			basic/ft_strlen.c \
 			basic/ft_bzero.c \
 			basic/ft_memcpy.c \

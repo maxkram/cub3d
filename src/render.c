@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:22:29 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/29 01:22:32 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/04/30 02:50:15 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,8 @@ void	clean_exit(t_data *d, int exit_status)
 	if (d->map.content)
 	{
 		i = 0;
-		while (i < d->map.height)
-		{
-			if (d->map.content[i])
-				free(d->map.content[i]);
-			i++;
-		}
+		while (i < d->map.height && d->map.content[i])
+			free(d->map.content[i++]);
 		free(d->map.content);
 	}
 	exit(exit_status);

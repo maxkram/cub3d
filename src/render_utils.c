@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:22:12 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/29 01:22:14 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/04/30 03:00:54 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,36 @@ double	deg_to_rad(double degrees)
 	return (degrees * M_PI / 180.0);
 }
 
-void	render_ceiling_floor(t_data *d)
+// void	render_ceiling_floor(t_data *d)
+// {
+// 	size_t	i;
+
+// 	i = 0;
+// 	while (i < (WINDOW_WIDTH * WINDOW_HEIGHT))
+// 	{
+// 		if (i < ((WINDOW_WIDTH * WINDOW_HEIGHT) / 2))
+// 			mlx_put_pixel(d->img, i, 0, d->color.ceiling);
+// 		else
+// 			mlx_put_pixel(d->img, i, 0, d->color.floor);
+// 		i++;
+// 	}
+// }
+
+void	render_ceiling_floor(t_data	*d)
 {
 	size_t	i;
+	size_t	half_pixels;
 
 	i = 0;
-	while (i < (WINDOW_WIDTH * WINDOW_HEIGHT))
+	half_pixels = (WINDOW_WIDTH * WINDOW_HEIGHT) / 2;
+	while (i < half_pixels)
 	{
-		if (i < ((WINDOW_WIDTH * WINDOW_HEIGHT) / 2))
-			mlx_put_pixel(d->img, i, 0, d->color.ceiling);
-		else
-			mlx_put_pixel(d->img, i, 0, d->color.floor);
+		mlx_put_pixel(d->img, i, 0, d->color.ceiling);
+		i++;
+	}
+	while (i < WINDOW_WIDTH * WINDOW_HEIGHT)
+	{
+		mlx_put_pixel(d->img, i, 0, d->color.floor);
 		i++;
 	}
 }

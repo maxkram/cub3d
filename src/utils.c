@@ -6,26 +6,17 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:22:47 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/29 01:22:50 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/04/30 02:39:55 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/main.h"
 
-/**
- * @brief Remove leading white spaces from a string.
- *
- * This function removes leading white spaces (spaces and tabs) from a string.
- *
- * @param string The string to process.
- * @return A pointer to the string with leading white spaces removed.
- */
-char	*skip_leading_white_spaces(char *string)
+char	*skip_leading_white_spaces(char	*string)
 {
-	while (string && *string != '\0' && (*string == '\t' || *string == '\v'
-			|| *string == '\f' || *string == '\r' || *string == ' '
-			|| *string == '\n'))
-		string++;
+	while (string && *string != '\0'
+		&& (ft_isspace(*string) || *string == '\t'))
+		++string;
 	return (string);
 }
 
@@ -48,21 +39,21 @@ void	print_parsing_error_message_2(t_return_value error)
 	if (error == NO_ELEMENT_FOUND)
 		ft_putstr_fd(
 			"Error\nCub file not properly formatted\n", 2);
-	else if (error == PLAYER_DATA_INCORRECT_OR_MISSING)
+	if (error == PLAYER_DATA_INCORRECT_OR_MISSING)
 		ft_putstr_fd(
 			"Error\nPlayer data incorrect or missing\n", 2);
-	else if (error == GARBAGE_DATA)
+	if (error == GARBAGE_DATA)
 		ft_putstr_fd("Error\nMap contains garbage data\n",
 			2);
-	else if (error == MAP_CONTAINS_EMPTY_LINE)
+	if (error == MAP_CONTAINS_EMPTY_LINE)
 		ft_putstr_fd(
 			"Error\nMap contains at least an empty line\n",
 			2);
-	else if (error == WALL_IS_BREACHED)
+	if (error == WALL_IS_BREACHED)
 		ft_putstr_fd("Error\nWall is breached\n", 2);
-	else if (error == INVALID_COLORS)
+	if (error == INVALID_COLORS)
 		ft_putstr_fd("Error\nInvalid RGB values\n", 2);
-	else if (error == DUPLICATE_ELEMENT)
+	if (error == DUPLICATE_ELEMENT)
 		ft_putstr_fd("Error\nDuplicate element\n", 2);
 }
 
@@ -109,20 +100,31 @@ void	clean_up_parsing(t_file_data *data)
 {
 	int	i;
 
-	if (data->north_texture)
-		free(data->north_texture);
-	if (data->south_texture)
-		free(data->south_texture);
-	if (data->west_texture)
-		free(data->west_texture);
-	if (data->east_texture)
-		free(data->east_texture);
-	if (data->floor_color)
-		free(data->floor_color);
-	if (data->ceiling_color)
-		free(data->ceiling_color);
-	if (data->file_content_as_string)
-		free(data->file_content_as_string);
+	// if (data->north_texture)
+	// 	free(data->north_texture);
+	// if (data->south_texture)
+	// 	free(data->south_texture);
+	// if (data->west_texture)
+	// 	free(data->west_texture);
+	// if (data->east_texture)
+	// 	free(data->east_texture);
+	// if (data->floor_color)
+	// 	free(data->floor_color);
+	// if (data->ceiling_color)
+	// 	free(data->ceiling_color);
+	// if (data->file_content_as_string)
+	// 	free(data->file_content_as_string);
+	free(data->north_texture);
+	free(data->south_texture);
+	free(data->west_texture);
+	free(data->east_texture);
+
+	// Free color pointers
+	free(data->floor_color);
+	free(data->ceiling_color);
+
+	// Free other allocated memory
+	free(data->file_content_as_string);
 	if (data->map_as_array)
 	{
 		i = 0;

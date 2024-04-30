@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:23:06 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/29 03:10:15 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/04/30 01:00:59 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,17 @@
 
 static int	contains_two_commas(char *str)
 {
-	int	i;
-	int	comma_count;
+    int comma_count = 0;
+    const char *ptr = str;
 
-	i = 0;
-	comma_count = 0;
-	while (str[i])
-	{
-		if (str[i] == ',')
-			comma_count++;
-		i++;
-	}
-	if (comma_count == 2)
-		return (1);
-	return (0);
+    while (*ptr) {
+        if (*ptr == ',') {
+            comma_count++;
+        }
+        ptr++;
+    }
+
+    return (comma_count == 2);
 }
 
 t_return_value	validate_color_strings(t_file_data *data)
