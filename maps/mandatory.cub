@@ -1,7 +1,7 @@
-NO textures/brick.png
-WE textures/wood.png
-SO textures/grass.png
-EA textures/dirt.png
+NO textures/LavaF1.png
+WE textures/Gold1.png
+SO textures/WaterF1.png
+EA textures/Glass.png
 
 F 220,100,0
 C 225,30,0
