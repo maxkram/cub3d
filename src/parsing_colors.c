@@ -6,20 +6,32 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:18:09 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/29 01:18:17 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/04/30 21:18:51 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/main.h"
 
+// static void	check_grid_len_and_validate(t_file_data *data, char **grid)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (grid[i])
+// 		i++;
+// 	if (i != 3)
+// 	{
+// 		data->return_value = INVALID_COLORS;
+// 		return ;
+// 	}
+// 	if (!ft_is_numerical(grid[0])
+// 		|| !ft_is_numerical(grid[1]) || !ft_is_numerical(grid[2]))
+// 		data->return_value = INVALID_COLORS;
+// }
+
 static void	check_grid_len_and_validate(t_file_data *data, char **grid)
 {
-	int	i;
-
-	i = 0;
-	while (grid[i])
-		i++;
-	if (i != 3)
+	if (ft_arraylen(grid) != 3)
 	{
 		data->return_value = INVALID_COLORS;
 		return ;
@@ -67,10 +79,7 @@ static void	free_grid(char **grid)
 		return ;
 	i = 0;
 	while (grid[i])
-	{
-		free(grid[i]);
-		i++;
-	}
+		free(grid[i++]);
 	free(grid);
 }
 

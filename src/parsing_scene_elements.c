@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:20:11 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/29 03:10:25 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/04/30 03:46:48 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +59,21 @@ static t_return_value
 	return_value = ELEMENT_NOT_FOUND;
 	if (ft_strncmp("NO ", element, 3) == 0)
 		return_value = get_element_texture(&data->north_texture, element + 3);
-	else if (ft_strncmp("SO ", element, 3) == 0)
+	if (ft_strncmp("SO ", element, 3) == 0)
 		return_value = get_element_texture(&data->south_texture, element + 3);
-	else if (ft_strncmp("WE ", element, 3) == 0)
+	if (ft_strncmp("WE ", element, 3) == 0)
 		return_value = get_element_texture(&data->west_texture, element + 3);
-	else if (ft_strncmp("EA ", element, 3) == 0)
+	if (ft_strncmp("EA ", element, 3) == 0)
 		return_value = get_element_texture(&data->east_texture, element + 3);
-	else if (ft_strncmp("F ", element, 2) == 0)
+	if (ft_strncmp("F ", element, 2) == 0)
 		return_value = get_element_texture(&data->floor_color, element + 2);
-	else if (ft_strncmp("C ", element, 2) == 0)
+	if (ft_strncmp("C ", element, 2) == 0)
 		return_value = get_element_texture(&data->ceiling_color, element + 2);
 	if (return_value == MALLOC_FAILURE)
 		data->return_value = MALLOC_FAILURE;
-	else if (return_value == DUPLICATE_ELEMENT)
+	if (return_value == DUPLICATE_ELEMENT)
 		data->return_value = DUPLICATE_ELEMENT;
-	else if (return_value == ELEMENT_FOUND)
+	if (return_value == ELEMENT_FOUND)
 		data->elements_found++;
 	if (data->elements_found == ELEMENTS_NEEDED)
 		return (ALL_ELEMENTS_FOUND);
@@ -100,9 +100,7 @@ t_return_value
 	while (*map_as_string != '\0')
 	{
 		if (*map_as_string != ' ' && *map_as_string != '\n')
-		{
 			empty_line = FALSE;
-		}
 		else if (*map_as_string == '\n')
 		{
 			if (empty_line)

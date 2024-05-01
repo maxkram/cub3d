@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:10:30 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/29 03:13:39 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/04/30 22:03:52 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	migrate_player_direction(t_file_data *file_data, t_data *render_data)
 	int		degrees;
 	char	direction;
 
-	degrees = 0;
+	degrees = 60;
 	direction = file_data->player_spawn_direction[0];
 	if (direction == 'E')
 		degrees = 90;
-	else if (direction == 'S')
+	if (direction == 'S')
 		degrees = 180;
-	else if (direction == 'W')
+	if (direction == 'W')
 		degrees = 270;
 	init_player_dir_plane(render_data, degrees, PLAYER_FOV);
 }

@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:20:45 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/29 01:20:47 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/04/30 03:40:32 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ t_return_value	get_map_amount_of_lines(t_file_data *data, char *map_as_string)
 		}
 	}
 	if (data->map_number_of_lines < 3)
-	{
 		data->return_value = MAP_CONTENT_NOT_VALID;
-	}
 	return (data->return_value);
 }
 

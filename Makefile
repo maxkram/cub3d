@@ -31,7 +31,7 @@ C_FILES			=	main.c \
 					parsing_colors.c \
 					parsing_utils.c \
 					parsing_map_and_player_import.c \
-					exit_utils.c \
+					exit.c \
 					validate_textures.c \
 					validate_colors.c
 

@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:13:53 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/29 03:18:19 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/04/30 22:17:14 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	main(int argc, char **argv)
 	t_file_data		file_data;
 
 	if (argc != 2)
-		exit_invalid_argc();
+		exit_bad_argc();
 	parsing_main(&file_data, argv);
 	init_game(&file_data, &render_data);
 	mlx_loop(render_data.mlx);
