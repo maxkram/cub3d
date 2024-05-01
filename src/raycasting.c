@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:21:41 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/29 01:21:44 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/01 00:58:13 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	perform_dda(t_data *d, t_ray *ray)
 			ray->side_dist.x += ray->delta_dist.x;
 			ray->map.x += ray->step.x;
 			if (ray->map.x < 0 || ray->map.x >= d->map.width)
-				exit(EXIT_FAILURE);
+				exit(1);
 			ray->side = 0;
 		}
 		else
@@ -30,7 +30,7 @@ static void	perform_dda(t_data *d, t_ray *ray)
 			ray->side_dist.y += ray->delta_dist.y;
 			ray->map.y += ray->step.y;
 			if (ray->map.y < 0 || ray->map.y >= d->map.height)
-				exit(EXIT_FAILURE);
+				exit(1);
 			ray->side = 1;
 		}
 		if (d->map.content[ray->map.y][ray->map.x] > 0)

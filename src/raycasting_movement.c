@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:21:19 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/30 03:35:41 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/01 01:01:12 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,11 @@ void	update_player_location(t_data *d)
 	if (mlx_is_key_down(d->mlx, MLX_KEY_RIGHT))
 		rotate_vectors_dir_plane(d, 1);
 	if (mlx_is_key_down(d->mlx, MLX_KEY_W))
-		move_player_in_direction_parallel(d, POSITIVE);
+		move_player_in_direction_parallel(d, 1);
 	if (mlx_is_key_down(d->mlx, MLX_KEY_S))
-		move_player_in_direction_parallel(d, NEGATIVE);
+		move_player_in_direction_parallel(d, -1);
 	if (mlx_is_key_down(d->mlx, MLX_KEY_A))
-		move_player_in_direction_perpendicular(d, POSITIVE);
+		move_player_in_direction_perpendicular(d, 1);
 	if (mlx_is_key_down(d->mlx, MLX_KEY_D))
-		move_player_in_direction_perpendicular(d, NEGATIVE);
+		move_player_in_direction_perpendicular(d, -1);
 }

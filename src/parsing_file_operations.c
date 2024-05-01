@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:10:29 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/29 03:10:37 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/01 04:15:53 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,37 +104,26 @@ t_return_value	get_file_content_to_string(t_file_data *data, const char **path)
 	close(data->file_descriptor);
 	return (data->return_value);
 }
+//it checks the file type ".cub". If it's not correct
+//it assigns the error code in the file_data structure
 
-/**
- * @brief Check the file type to ensure it has the .cub extension.
- *
- * This function checks if the provided file path has the correct
- * extension (.cub). If the extension is incorrect, it sets
- * the appropriate error code in the t_file_data structure and
- * prints a usage message.
- *
- * @param data A pointer to the t_file_data structure.
- * @param path_to_file An array containing the path
- * to the scene description file.
- * @return The exit code indicating success or failure.
- */
 t_return_value	check_file_type(t_file_data *data, const char **path_to_file)
 {
 	const char	*path;
-	char		*last_4_chars;
-	size_t		length;
+	char		*end4;
+	size_t		len;
 
 	path = path_to_file[1];
-	last_4_chars = NULL;
-	if (*path != '\0')
+	end4 = NULL;
+	if (*path)
 	{
-		length = ft_strlen(path);
-		last_4_chars = ft_substr(path, length - 4, 4);
-		if (ft_strncmp(".cub", last_4_chars, 4) == SUCCESS)
-			free(last_4_chars);
+		len = ft_strlen(path);
+		end4 = ft_substr(path, len - 4, 4);
+		if (ft_strncmp(".cub", end4, 4) == 0)
+			free(end4);
 		else
 		{
-			free(last_4_chars);
+			free(end4);
 			data->return_value = NEED_MAP_CUB_FILE;
 		}
 	}

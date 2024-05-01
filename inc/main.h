@@ -11,11 +11,11 @@
 # define PLAYER_ROTATE_SPEED 0.03
 # define TEXTURE_SIZE_MIN 1
 # define TEXTURE_SIZE_MAX 64
-# define EXIT_SUCCESS 0
-# define EXIT_FAILURE 1
-# define HUGE_NUMBER 100000000
-# define NEGATIVE -1
-# define POSITIVE 1
+// # define EXIT_SUCCESS 0
+// # define EXIT_FAILURE 1
+// # define HUGE_NUMBER 123456789
+// # define NEGATIVE -1
+// # define POSITIVE 1
 # define COLOR_BLACK 0x000000FF
 # define COLOR_WHITE 0xFFFFFFFF
 # define COLOR_GREEN 0x90FD90FF

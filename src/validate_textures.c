@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:23:37 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/29 01:23:41 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/01 00:58:16 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ void	validate_textures(t_data *render_data)
 	failure_total += (int)validate_one_texture(render_data->texture.south);
 	failure_total += (int)validate_one_texture(render_data->texture.west);
 	if (failure_total > 0)
-		clean_exit(render_data, EXIT_FAILURE);
+		clean_exit(render_data, 1);
 }

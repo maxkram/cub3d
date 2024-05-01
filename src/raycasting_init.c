@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:21:02 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/29 01:21:04 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/01 00:59:25 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ void	init_ray_base_values(t_data *d, t_ray *ray, int x)
 	ray->dir.y = d->player.dir.y + d->player.plane.y * ray->cam_x;
 	ray->map.x = (int)d->player.pos.x;
 	if (ray->map.x < 0 || ray->map.x >= d->map.width)
-		exit(EXIT_FAILURE);
+		exit(1);
 	ray->map.y = (int)d->player.pos.y;
 	if (ray->map.y < 0 || ray->map.y >= d->map.height)
-		exit(EXIT_FAILURE);
+		exit(1);
 }
 
 void	init_ray_delta(t_ray *ray)
 {
-	ray->delta_dist.x = HUGE_NUMBER;
+	ray->delta_dist.x = 123456789;
 	if (ray->dir.x != 0)
 		ray->delta_dist.x = fabs(1 / ray->dir.x);
-	ray->delta_dist.y = HUGE_NUMBER;
+	ray->delta_dist.y = 123456789;
 	if (ray->dir.y != 0)
 		ray->delta_dist.y = fabs(1 / ray->dir.y);
 }

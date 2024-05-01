@@ -185,7 +185,7 @@ int32_t	main(void)
 	mlx_key_hook(mlx, &my_keyhook, NULL);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
-	return (EXIT_SUCCESS);
+	return (0);
 }
 ```
 
@@ -224,6 +224,6 @@ int32_t	main(void)
 	mlx_scroll_hook(mlx, &my_scrollhook, NULL);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
-	return (EXIT_SUCCESS);
+	return (0);
 }
 ```

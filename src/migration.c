@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:10:30 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/30 22:03:52 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/01 00:58:02 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	exit_parsing(t_file_data *file_data, int return_value)
 {
 	print_parsing_error_message(return_value);
 	clean_up_parsing(file_data);
-	exit(EXIT_FAILURE);
+	exit(1);
 }
 
 void	exit_mlx_parsing(t_file_data *file_data, int return_value, mlx_t *mlx)

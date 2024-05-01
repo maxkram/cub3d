@@ -78,7 +78,7 @@ int32_t	main(void)
 	// Optional, terminate will clean up any leftovers, this is just to demonstrate.
 	mlx_delete_image(mlx, img);
 	mlx_terminate(mlx);
-	return (EXIT_SUCCESS);
+	return (0);
 }
 ```
 

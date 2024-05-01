@@ -77,6 +77,6 @@ int32_t	main(void)
 	mlx_delete_image(mlx, img);
 	mlx_delete_texture(texture);
 	mlx_terminate(mlx);
-	return (EXIT_SUCCESS);
+	return (0);
 }
 ```

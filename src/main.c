@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:13:53 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/30 22:17:14 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/01 00:56:02 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,6 @@ int	main(int argc, char **argv)
 	parsing_main(&file_data, argv);
 	init_game(&file_data, &render_data);
 	mlx_loop(render_data.mlx);
-	clean_exit(&render_data, EXIT_SUCCESS);
-	return (EXIT_SUCCESS);
+	clean_exit(&render_data, 0);
+	return (0);
 }
