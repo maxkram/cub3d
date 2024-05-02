@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:20:45 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/30 03:40:32 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/02 01:34:18 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ t_return_value	initialize_string_buffers(char **line_buffer, t_file_data *data)
 	data->file_content_as_string = ft_strdup("");
 	if (!*line_buffer || !data->file_content_as_string)
 	{
-		data->return_value = MALLOC_FAILURE;
+		data->return_value = MALLOC_FAIL;
 		if (*line_buffer)
 			free(*line_buffer);
 		if (data->file_content_as_string)
@@ -106,29 +106,14 @@ t_return_value	initialize_string_buffers(char **line_buffer, t_file_data *data)
 	return (data->return_value);
 }
 
-/**
- * @brief Checks if all characters in the input string are digits and the
- * string is not empty.
- *
- * This function returns true if all characters in the input string are
- * digits (0-9) and if the string is not empty. Otherwise, it returns false.
- *
- * @param str The input string to be checked.
- * @return TRUE if the string consists of only digits and is not empty, FALSE
- * otherwise.
- */
 t_bool	ft_is_numerical(char *str)
 {
-	size_t	i;
-
 	if (!str || !str[0])
 		return (FALSE);
-	i = 0;
-	while (str[i])
+	while (*str)
 	{
-		if (!ft_isdigit(str[i]))
+		if (!ft_isdigit(*str++))
 			return (FALSE);
-		i++;
 	}
 	return (TRUE);
 }

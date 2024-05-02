@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:10:29 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/01 04:15:53 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/02 01:26:54 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_return_value	open_and_validate_file(t_file_data *data,
 	data->file_descriptor = open(path[1], O_RDONLY);
 	if (data->file_descriptor == -1)
 	{
-		data->return_value = FILE_OPEN_FAILURE;
+		data->return_value = FILE_OPEN_FAIL;
 		close(data->file_descriptor);
 		return (data->return_value);
 	}
@@ -56,14 +56,14 @@ static t_return_value	concatenate_line_buffer_to_string(t_file_data *data,
 	temp = ft_strdup(data->file_content_as_string);
 	if (temp == NULL)
 	{
-		data->return_value = MALLOC_FAILURE;
+		data->return_value = MALLOC_FAIL;
 		return (data->return_value);
 	}
 	free(data->file_content_as_string);
 	data->file_content_as_string = ft_strjoin(temp, line);
 	free(temp);
 	if (data->file_content_as_string == NULL)
-		data->return_value = MALLOC_FAILURE;
+		data->return_value = MALLOC_FAIL;
 	return (data->return_value);
 }
 
@@ -82,9 +82,9 @@ t_return_value	get_file_content_to_string(t_file_data *data, const char **path)
 {
 	char	*line_buffer;
 
-	if (open_and_validate_file(data, path) == FILE_OPEN_FAILURE)
+	if (open_and_validate_file(data, path) == FILE_OPEN_FAIL)
 		return (data->return_value);
-	if (initialize_string_buffers(&line_buffer, data) == MALLOC_FAILURE)
+	if (initialize_string_buffers(&line_buffer, data) == MALLOC_FAIL)
 		return (data->return_value);
 	while (line_buffer)
 	{
@@ -93,7 +93,7 @@ t_return_value	get_file_content_to_string(t_file_data *data, const char **path)
 		if (line_buffer == NULL)
 			break ;
 		if (concatenate_line_buffer_to_string(data,
-				line_buffer) == MALLOC_FAILURE)
+				line_buffer) == MALLOC_FAIL)
 		{
 			free(line_buffer);
 			break ;
@@ -140,11 +140,11 @@ t_return_value	check_file_type(t_file_data *data, const char **path_to_file)
  */
 t_return_value	validate_scene_requirement(t_file_data *data)
 {
-	if (get_scene_elements_and_map(data) != SUCCESS)
+	if (get_scene_elements_and_map(data) != OK)
 		return (data->return_value);
-	if (validate_color_strings(data) != SUCCESS)
+	if (validate_color_strings(data) != OK)
 		return (data->return_value);
-	if (get_rgb_colors(data) != SUCCESS)
+	if (get_rgb_colors(data) != OK)
 		return (data->return_value);
 	return (data->return_value);
 }

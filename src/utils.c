@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:22:47 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/02 01:21:39 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/02 01:27:13 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ void	print_parsing_error_message_2(t_return_value error)
 
 void	print_parsing_error_message(t_return_value error)
 {
-	if (error == MALLOC_FAILURE)
+	if (error == MALLOC_FAIL)
 		printf("Error\nMemory issues\n");
 	if (error == NEED_MAP_CUB_FILE)
 		printf("Error\nNeed a .cub file\n");
 	if (error == FILE_IS_EMPTY)
 		printf("Error\nEmpty file\n");
-	if (error == FILE_OPEN_FAILURE)
+	if (error == FILE_OPEN_FAIL)
 		printf("Error\nCannot open the file\n");
 	if (error == MAP_CONTENT_NOT_VALID)
 		printf("Error\nWrong content\n");

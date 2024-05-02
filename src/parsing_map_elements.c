@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:19:34 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/02 01:10:30 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/02 01:27:00 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ static t_return_value	allocate_map_array_and_copy_data(t_file_data *data,
 			+ 1, sizeof(int));
 	if (!data->map_as_array[current_line])
 	{
-		data->return_value = MALLOC_FAILURE;
+		data->return_value = MALLOC_FAIL;
 		return (data->return_value);
 	}
 	copy_map_data(line_starts, data, max_line_length, current_line);
@@ -167,11 +167,11 @@ t_return_value
 	data->map_as_array = (t_map_tile **)
 		ft_calloc(data->map_number_of_lines + 1, sizeof(int *));
 	if (!data->map_as_array)
-		return (data->return_value = MALLOC_FAILURE);
+		return (data->return_value = MALLOC_FAIL);
 	while (*line_starts != '\0' && current_line < data->map_number_of_lines)
 	{
 		if (allocate_map_array_and_copy_data(data, data->max_map_width,
-				current_line, line_starts) != SUCCESS)
+				current_line, line_starts) != OK)
 			return (data->return_value);
 		line_starts = ft_strchr(line_starts, '\n');
 		if (!line_starts)

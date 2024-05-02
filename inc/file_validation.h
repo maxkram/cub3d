@@ -33,11 +33,11 @@ typedef enum e_bool
 
 typedef enum e_return_value
 {
-	SUCCESS,
-	FAILURE,
-	MALLOC_FAILURE,
+	OK,
+	FAIL,
+	MALLOC_FAIL,
 	NEED_MAP_CUB_FILE,
-	FILE_OPEN_FAILURE,
+	FILE_OPEN_FAIL,
 	FILE_IS_EMPTY,
 	MAP_CONTENT_NOT_VALID,
 	ELEMENTS_NOT_VALID,
@@ -54,7 +54,6 @@ typedef enum e_return_value
 	MAP_CONTAINS_EMPTY_LINE,
 	OPEN_WALL,
 	WRONG_COLORS,
-	MAP_MISSING,
 }					t_return_value;
 
 // Structure to hold information extracted from the scene description file

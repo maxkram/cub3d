@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:13:53 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/02 00:48:39 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/02 01:26:39 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ static	t_return_value	validate_cub_and_map_file(
 {
 	char	*temp;
 
-	if (check_file_type(data, path_to_file) == SUCCESS)
+	if (check_file_type(data, path_to_file) == OK)
 	{
-		if (get_file_content_to_string(data, path_to_file) == FILE_OPEN_FAILURE)
+		if (get_file_content_to_string(data, path_to_file) == FILE_OPEN_FAIL)
 			return (data->return_value);
 		temp = ft_strtrim(data->file_content_as_string, " \t\v\f\r\n");
 		free(data->file_content_as_string);
 		data->file_content_as_string = ft_strdup(temp);
 		free(temp);
 	}
-	if (data->return_value == SUCCESS)
+	if (data->return_value == OK)
 		validate_scene_requirement(data);
 	return (data->return_value);
 }
@@ -34,9 +34,9 @@ static	t_return_value	validate_cub_and_map_file(
 static void	parsing_main(t_file_data *file_data, char **argv)
 {
 	initialize_struct(file_data);
-	file_data->return_value = SUCCESS;
+	file_data->return_value = OK;
 	validate_cub_and_map_file(file_data, (const char **)argv);
-	if (file_data->return_value != SUCCESS)
+	if (file_data->return_value != OK)
 		exit_parsing(file_data, file_data->return_value);
 }
 
@@ -45,16 +45,16 @@ static t_return_value	migrate_data_file_to_render(
 {
 	render_data->texture.north = mlx_load_png(file_data->north_texture);
 	if (!render_data->texture.north)
-		return (FAILURE);
+		return (FAIL);
 	render_data->texture.east = mlx_load_png(file_data->east_texture);
 	if (!render_data->texture.east)
-		return (FAILURE);
+		return (FAIL);
 	render_data->texture.south = mlx_load_png(file_data->south_texture);
 	if (!render_data->texture.south)
-		return (FAILURE);
+		return (FAIL);
 	render_data->texture.west = mlx_load_png(file_data->west_texture);
 	if (!render_data->texture.west)
-		return (FAILURE);
+		return (FAIL);
 	render_data->map.height = file_data->map_number_of_lines;
 	render_data->map.width = file_data->max_map_width;
 	render_data->map.content = (int **)file_data->map_as_array;
@@ -62,22 +62,22 @@ static t_return_value	migrate_data_file_to_render(
 	render_data->player.pos.y = file_data->player_y + 0.5;
 	migrate_player_direction(file_data, render_data);
 	migrate_colors(file_data, render_data);
-	return (SUCCESS);
+	return (OK);
 }
 
 void	init_game(t_file_data *file_data, t_data *render_data)
 {
 	render_data->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D", false);
 	if (!render_data->mlx)
-		exit_parsing(file_data, MALLOC_FAILURE);
+		exit_parsing(file_data, MALLOC_FAIL);
 	render_data->img = mlx_new_image(render_data->mlx,
 			WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (!render_data->img)
-		exit_mlx_parsing(file_data, FAILURE, render_data->mlx);
-	if (migrate_data_file_to_render(file_data, render_data) == FAILURE)
-		exit_mlx_parsing(file_data, FAILURE, render_data->mlx);
+		exit_mlx_parsing(file_data, FAIL, render_data->mlx);
+	if (migrate_data_file_to_render(file_data, render_data) == FAIL)
+		exit_mlx_parsing(file_data, FAIL, render_data->mlx);
 	if (mlx_image_to_window(render_data->mlx, render_data->img, 0, 0) < 0)
-		exit_mlx_parsing(file_data, FAILURE, render_data->mlx);
+		exit_mlx_parsing(file_data, FAIL, render_data->mlx);
 	free_file_data_not_map(file_data);
 	check_all_textures(render_data);
 	mlx_loop_hook(render_data->mlx, loop_hook, render_data);

@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:19:07 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/29 01:19:10 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/02 01:24:32 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ t_return_value	map_import_and_preparation(t_file_data *data,
 	if (get_map_amount_of_lines(data, map_as_string) == MAP_CONTENT_NOT_VALID)
 		return (data->return_value);
 	if (get_player_spawn_position_and_direction(
-			data, map_as_string, SPAWN_DIRECTION) != SUCCESS)
+			data, map_as_string, SPAWN_DIRECTION) != OK)
 		return (data->return_value);
 	if (check_for_garbage_data_in_remaining_map(data,
 			map_as_string) == GARBAGE_DATA)

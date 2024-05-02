@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:18:09 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/02 00:44:53 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/02 01:26:50 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static t_color	ret_colors(t_file_data *data, char **rgb)
 	colors.green = 0;
 	colors.blue = 0;
 	check_grid_len_and_validate(data, rgb);
-	if (data->return_value != SUCCESS)
+	if (data->return_value != OK)
 		return (colors);
 	colors.red = ft_atoi(rgb[0]);
 	colors.green = ft_atoi(rgb[1]);
@@ -91,17 +91,17 @@ t_return_value	get_rgb_colors(t_file_data *data)
 	ceiling_colors = ft_split(data->ceiling_color, ',');
 	if (!ceiling_colors)
 	{
-		data->return_value = MALLOC_FAILURE;
+		data->return_value = MALLOC_FAIL;
 		return (data->return_value);
 	}
 	data->ceiling_rgb = ret_colors(data, ceiling_colors);
 	free_grid(ceiling_colors);
-	if (data->return_value != SUCCESS)
+	if (data->return_value != OK)
 		return (data->return_value);
 	floor_colors = ft_split(data->floor_color, ',');
 	if (!floor_colors)
 	{
-		data->return_value = MALLOC_FAILURE;
+		data->return_value = MALLOC_FAIL;
 		return (data->return_value);
 	}
 	data->floor_rgb = ret_colors(data, floor_colors);

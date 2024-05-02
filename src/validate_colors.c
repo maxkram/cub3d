@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:23:06 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/02 00:45:02 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/02 01:24:58 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ t_return_value	validate_color_strings(t_file_data *data)
 		data->return_value = WRONG_COLORS;
 		return (WRONG_COLORS);
 	}
-	return (SUCCESS);
+	return (OK);
 }

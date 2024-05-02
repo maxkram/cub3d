@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:20:11 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/02 01:09:33 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/02 01:27:05 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static t_return_value
 		return (DUPLICATE);
 	*element_type = (char *)calloc(element_length + 1, sizeof(char));
 	if (*element_type == NULL)
-		return (MALLOC_FAILURE);
+		return (MALLOC_FAIL);
 	ft_strlcpy(*element_type, element_content, element_length + 1);
 	return (ELEMENT_FOUND);
 }
@@ -69,8 +69,8 @@ static t_return_value
 		return_value = get_element_texture(&data->floor_color, element + 2);
 	if (ft_strncmp("C ", element, 2) == 0)
 		return_value = get_element_texture(&data->ceiling_color, element + 2);
-	if (return_value == MALLOC_FAILURE)
-		data->return_value = MALLOC_FAILURE;
+	if (return_value == MALLOC_FAIL)
+		data->return_value = MALLOC_FAIL;
 	if (return_value == DUPLICATE)
 		data->return_value = DUPLICATE;
 	if (return_value == ELEMENT_FOUND)
@@ -139,7 +139,7 @@ t_return_value
 		if (element_starts != element_ends)
 		{
 			if (*element_starts == '1' || *element_starts == '0'
-				|| find_and_get_element(element_starts, data) == MALLOC_FAILURE)
+				|| find_and_get_element(element_starts, data) == MALLOC_FAIL)
 				break ;
 		}
 		element_starts = element_ends;
@@ -149,7 +149,7 @@ t_return_value
 	while (element_starts
 		&& *element_starts != '\0' && *element_starts == '\n')
 		element_starts++;
-	if (data->return_value == SUCCESS)
+	if (data->return_value == OK)
 		map_import_and_preparation(data, element_starts);
 	return (data->return_value);
 }
