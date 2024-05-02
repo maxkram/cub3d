@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:18:09 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/30 21:18:51 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/02 00:44:53 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,24 @@
 // 		i++;
 // 	if (i != 3)
 // 	{
-// 		data->return_value = INVALID_COLORS;
+// 		data->return_value = WRONG_COLORS;
 // 		return ;
 // 	}
 // 	if (!ft_is_numerical(grid[0])
 // 		|| !ft_is_numerical(grid[1]) || !ft_is_numerical(grid[2]))
-// 		data->return_value = INVALID_COLORS;
+// 		data->return_value = WRONG_COLORS;
 // }
 
 static void	check_grid_len_and_validate(t_file_data *data, char **grid)
 {
 	if (ft_arraylen(grid) != 3)
 	{
-		data->return_value = INVALID_COLORS;
+		data->return_value = WRONG_COLORS;
 		return ;
 	}
 	if (!ft_is_numerical(grid[0])
 		|| !ft_is_numerical(grid[1]) || !ft_is_numerical(grid[2]))
-		data->return_value = INVALID_COLORS;
+		data->return_value = WRONG_COLORS;
 }
 
 static t_bool	is_valid_color_value(int color)
@@ -67,7 +67,7 @@ static t_color	ret_colors(t_file_data *data, char **rgb)
 	valid_colors += is_valid_color_value(colors.green);
 	valid_colors += is_valid_color_value(colors.blue);
 	if (valid_colors < 3)
-		data->return_value = INVALID_COLORS;
+		data->return_value = WRONG_COLORS;
 	return (colors);
 }
 

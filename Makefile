@@ -32,7 +32,7 @@ C_FILES			=	main.c \
 					parsing_utils.c \
 					parsing_map_and_player_import.c \
 					exit.c \
-					validate_textures.c \
+					check_all_textures.c \
 					validate_colors.c
 
 H_PATHS			=	$(addprefix $(H_FOLDER)/, $(H_FILES))

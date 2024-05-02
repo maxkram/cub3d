@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:20:11 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/30 03:46:48 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/02 01:09:33 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static t_return_value
 		&& element_content[element_length] != '\0')
 		element_length++;
 	if (*element_type != NULL)
-		return (DUPLICATE_ELEMENT);
+		return (DUPLICATE);
 	*element_type = (char *)calloc(element_length + 1, sizeof(char));
 	if (*element_type == NULL)
 		return (MALLOC_FAILURE);
@@ -71,8 +71,8 @@ static t_return_value
 		return_value = get_element_texture(&data->ceiling_color, element + 2);
 	if (return_value == MALLOC_FAILURE)
 		data->return_value = MALLOC_FAILURE;
-	if (return_value == DUPLICATE_ELEMENT)
-		data->return_value = DUPLICATE_ELEMENT;
+	if (return_value == DUPLICATE)
+		data->return_value = DUPLICATE;
 	if (return_value == ELEMENT_FOUND)
 		data->elements_found++;
 	if (data->elements_found == ELEMENTS_NEEDED)

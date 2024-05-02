@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:10:30 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/01 00:58:02 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/01 18:20:25 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	migrate_player_direction(t_file_data *file_data, t_data *render_data)
 	int		degrees;
 	char	direction;
 
-	degrees = 60;
+	degrees = 0;
 	direction = file_data->player_spawn_direction[0];
 	if (direction == 'E')
 		degrees = 90;

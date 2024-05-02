@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 00:00:39 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/30 20:34:54 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/01 19:12:36 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-int     ft_arraylen(char **str);
-int     ft_isspace(int c);
+int		ft_arraylen(char **str);
+int		ft_isspace(int c);
 int		ft_isdigit(int c);
 size_t	ft_strlen(const char *s);
 void	ft_bzero(void *s, size_t n);

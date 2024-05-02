@@ -189,7 +189,7 @@ void				exit_mlx_parsing(t_file_data *file_data,
 void				free_file_data_not_map(t_file_data *data);
 void				migrate_colors(t_file_data *file_data, t_data *render_data);
 void				exit_bad_argc(void);
-void				validate_textures(t_data *render_data);
+void				check_all_textures(t_data *render_data);
 t_return_value		validate_color_strings(t_file_data *data);
 
 #endif

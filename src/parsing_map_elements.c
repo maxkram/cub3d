@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:19:34 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/29 01:19:37 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/02 01:10:30 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ t_bool	is_wall_or_floor(t_file_data *data, int line, int column, int map_width)
  *
  * This function validates the entire map to ensure that all floor positions are
  * surrounded by walls or floors. If a floor position is not surrounded
- * properly, it sets the `data->return_value` to `WALL_IS_BREACHED`.
+ * properly, it sets the `data->return_value` to `OPEN_WALL`.
  *
  * @param data The map data structure.
  * @param map_width The width of the map.
- * @return The validation result (`WALL_IS_BREACHED` or no error).
+ * @return The validation result (`OPEN_WALL` or no error).
  * @details map_number_or_lines includes a last NULL terminated line
  */
 t_return_value	validate_map(t_file_data *data, int map_width)
@@ -71,7 +71,7 @@ t_return_value	validate_map(t_file_data *data, int map_width)
 			{
 				if (line == (data->map_number_of_lines - 1)
 					|| !is_wall_or_floor(data, line, column, map_width))
-					data->return_value = WALL_IS_BREACHED;
+					data->return_value = OPEN_WALL;
 			}
 			column++;
 		}

@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:10:06 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/01 00:57:56 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/01 19:06:09 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	exit_bad_argc(void)
 {
-	printf("Error with arguments\nIt must something like that: ./cub3D ./map.cub\n");
+	printf("Error with arguments\nIt must something like that: \
+		 ./cub3D ./map.cub\n");
 	exit(1);
 }
 
@@ -22,7 +23,7 @@ void	free_file_data_not_map(t_file_data *data)
 {
 	free(data->north_texture);
 	free(data->south_texture);
-free(data->west_texture);
+	free(data->west_texture);
 	free(data->east_texture);
 	free(data->floor_color);
 	free(data->ceiling_color);
