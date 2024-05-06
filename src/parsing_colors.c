@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:18:09 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/06 00:16:32 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/06 00:26:21 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,14 @@ void	check_length_and_validate(t_file_data *data, char **grid)
 		data->return_value = WRONG_COLORS;
 }
 
-bool is_good_color(int color)
+bool	is_good_color(int color)
 {
-    return (color >= 0 && color < 256);
+	return (color >= 0 && color < 256);
 }
 
-static t_color	ret_colors(t_file_data *data, char **rgb)
+t_color	return_colors(t_file_data *data, char **rgb)
 {
 	t_color	colors;
-	int		valid_colors;
 
 	colors.red = 0;
 	colors.green = 0;
@@ -43,11 +42,8 @@ static t_color	ret_colors(t_file_data *data, char **rgb)
 	colors.red = ft_atoi(rgb[0]);
 	colors.green = ft_atoi(rgb[1]);
 	colors.blue = ft_atoi(rgb[2]);
-	valid_colors = 0;
-	valid_colors += is_good_color(colors.red);
-	valid_colors += is_good_color(colors.green);
-	valid_colors += is_good_color(colors.blue);
-	if (valid_colors < 3)
+	if (!is_good_color(colors.red) || !is_good_color(colors.green)
+		|| !is_good_color(colors.blue))
 		data->return_value = WRONG_COLORS;
 	return (colors);
 }
@@ -75,7 +71,7 @@ t_return_value	get_rgb_colors(t_file_data *data)
 		data->return_value = MALLOC_FAIL;
 		return (data->return_value);
 	}
-	data->ceiling_rgb = ret_colors(data, ceiling_colors);
+	data->ceiling_rgb = return_colors(data, ceiling_colors);
 	free_grid(ceiling_colors);
 	if (data->return_value != OK)
 		return (data->return_value);
@@ -85,7 +81,7 @@ t_return_value	get_rgb_colors(t_file_data *data)
 		data->return_value = MALLOC_FAIL;
 		return (data->return_value);
 	}
-	data->floor_rgb = ret_colors(data, floor_colors);
+	data->floor_rgb = return_colors(data, floor_colors);
 	free_grid(floor_colors);
 	return (data->return_value);
 }
