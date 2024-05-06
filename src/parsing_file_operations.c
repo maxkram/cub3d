@@ -6,24 +6,13 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:10:29 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/06 00:37:24 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/06 00:48:31 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/main.h"
 
-/**
- * @brief Open and validate the scene description file.
- *
- * This function opens the specified file, validates its existence, and sets up
- * the file descriptor for reading. If any errors occur during the process, it
- * sets the appropriate error code in the t_file_data structure.
- *
- * @param data A pointer to the t_file_data structure.
- * @param path An array containing the path to the scene description file.
- * @return The exit code indicating success or failure.
- */
-static t_return_value	open_and_validate_file(t_file_data *data,
+t_return_value	open_and_check_file(t_file_data *data,
 		const char **path)
 {
 	data->file_descriptor = open(path[1], O_RDONLY);
@@ -31,7 +20,7 @@ static t_return_value	open_and_validate_file(t_file_data *data,
 	{
 		data->return_value = FILE_OPEN_FAIL;
 		close(data->file_descriptor);
-		return (data->return_value);
+		// return (data->return_value);
 	}
 	return (data->return_value);
 }
@@ -82,7 +71,7 @@ t_return_value	scene_content_to_string(t_file_data *data, const char **path)
 {
 	char	*line_buffer;
 
-	if (open_and_validate_file(data, path) == FILE_OPEN_FAIL)
+	if (open_and_check_file(data, path) == FILE_OPEN_FAIL)
 		return (data->return_value);
 	if (initialize_string_buffers(&line_buffer, data) == MALLOC_FAIL)
 		return (data->return_value);
