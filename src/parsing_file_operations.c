@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:10:29 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/02 01:26:54 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/05 02:28:30 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static t_return_value	concatenate_line_buffer_to_string(t_file_data *data,
  * @param path An array containing the path to the scene description file.
  * @return The exit code indicating success or failure.
  */
-t_return_value	get_file_content_to_string(t_file_data *data, const char **path)
+t_return_value	scene_content_to_string(t_file_data *data, const char **path)
 {
 	char	*line_buffer;
 
@@ -138,7 +138,7 @@ t_return_value	check_file_type(t_file_data *data, const char **path_to_file)
  * @param data The structure to store the extracted elements.
  * @return A return code indicating success or failure.
  */
-t_return_value	validate_scene_requirement(t_file_data *data)
+t_return_value	check_scene_demands(t_file_data *data)
 {
 	if (get_scene_elements_and_map(data) != OK)
 		return (data->return_value);

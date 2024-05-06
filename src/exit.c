@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:10:06 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/01 19:06:09 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/05 01:04:30 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	exit_bad_argc(void)
 	exit(1);
 }
 
-void	free_file_data_not_map(t_file_data *data)
+void	clean_struct_4_map(t_file_data *data)
 {
 	free(data->north_texture);
 	free(data->south_texture);

@@ -39,5 +39,5 @@ void	check_all_textures(t_data *render_data)
 	all_failures += check_texture(render_data->texture.south);
 	all_failures += check_texture(render_data->texture.west);
 	if (all_failures > 0)
-		clean_exit(render_data, 1);
+		clean_and_exit(render_data, 1);
 }

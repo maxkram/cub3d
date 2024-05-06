@@ -6,13 +6,13 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:22:29 by mkramer           #+#    #+#             */
-/*   Updated: 2024/04/30 02:50:15 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/05 01:23:25 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/main.h"
 
-void	clean_exit(t_data *d, int exit_status)
+void	clean_and_exit(t_data *d, int exit_status)
 {
 	int		i;
 

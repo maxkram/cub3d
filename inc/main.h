@@ -155,15 +155,15 @@ void				initialize_struct(t_file_data *structure_pointer);
 void				print_parsing_error_message(t_return_value error);
 t_return_value		check_file_type(t_file_data *data,
 						const char **path_to_file);
-t_return_value		get_file_content_to_string(t_file_data *data,
+t_return_value		scene_content_to_string(t_file_data *data,
 						const char **path);
 void				clean_up_parsing(t_file_data *data);
-t_return_value		validate_scene_requirement(t_file_data *data);
+t_return_value		check_scene_demands(t_file_data *data);
 void				render(t_data *d);
-void				loop_hook(void *data_param);
-void				close_hook(void *data_param);
-void				key_hook(mlx_key_data_t keydata, void *data_param);
-void				clean_exit(t_data *d, int exit_status);
+void				hook_loop(void *data_param);
+void				hook_close(void *data_param);
+void				hook_key(mlx_key_data_t keydata, void *data_param);
+void				clean_and_exit(t_data *d, int exit_status);
 double				deg_to_rad(double degrees);
 unsigned int		get_texture_pixel(mlx_texture_t *texture, unsigned int x,
 						unsigned int y);
@@ -174,7 +174,7 @@ void				put_pixel(mlx_image_t *image, uint32_t x, uint32_t y,
 						uint32_t color);
 void				render_ceiling_floor(t_data *d);
 void				update_player_location(t_data *d);
-void				migrate_player_direction(t_file_data *file_data,
+void				move_player_direction(t_file_data *file_data,
 						t_data *render_data);
 void				cast_rays(t_data *d);
 void				draw_texture(t_data *d, t_ray *ray, int x);
@@ -183,11 +183,11 @@ void				init_ray_delta(t_ray *ray);
 void				init_ray_side_distance(t_data *d, t_ray *ray);
 t_return_value		get_rgb_colors(t_file_data *data);
 t_bool				ft_is_numerical(char *str);
-void				exit_parsing(t_file_data *file_data, int return_value);
-void				exit_mlx_parsing(t_file_data *file_data,
+void				exit_from_parse(t_file_data *file_data, int return_value);
+void				exit_mlx_parse(t_file_data *file_data,
 						int return_value, mlx_t *mlx);
-void				free_file_data_not_map(t_file_data *data);
-void				migrate_colors(t_file_data *file_data, t_data *render_data);
+void				clean_struct_4_map(t_file_data *data);
+void				move_colors(t_file_data *file_data, t_data *render_data);
 void				exit_bad_argc(void);
 void				check_all_textures(t_data *render_data);
 t_return_value		validate_color_strings(t_file_data *data);

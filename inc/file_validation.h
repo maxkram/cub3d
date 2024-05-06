@@ -86,7 +86,7 @@ typedef struct s_file_data
 t_return_value		validate_cub_file(t_file_data *file_data,
 						const char **path_to_file);
 t_return_value		get_scene_elements_and_map(t_file_data *data);
-t_return_value		validate_scene_requirement(t_file_data *data);
+t_return_value		check_scene_demands(t_file_data *data);
 t_return_value		get_map_amount_of_lines(t_file_data *data,
 						char *map_as_string);
 char				*skip_leading_white_spaces(char *string_beginning);

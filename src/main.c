@@ -6,20 +6,20 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:13:53 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/02 01:26:39 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/05 02:28:32 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/main.h"
 
-static	t_return_value	validate_cub_and_map_file(
+t_return_value	check_cub_file(
 		t_file_data *data, const char **path_to_file)
 {
 	char	*temp;
 
 	if (check_file_type(data, path_to_file) == OK)
 	{
-		if (get_file_content_to_string(data, path_to_file) == FILE_OPEN_FAIL)
+		if (scene_content_to_string(data, path_to_file) == FILE_OPEN_FAIL)
 			return (data->return_value);
 		temp = ft_strtrim(data->file_content_as_string, " \t\v\f\r\n");
 		free(data->file_content_as_string);
@@ -27,20 +27,20 @@ static	t_return_value	validate_cub_and_map_file(
 		free(temp);
 	}
 	if (data->return_value == OK)
-		validate_scene_requirement(data);
+		check_scene_demands(data);
 	return (data->return_value);
 }
 
-static void	parsing_main(t_file_data *file_data, char **argv)
+void	parse(t_file_data *file_data, char **argv)
 {
 	initialize_struct(file_data);
 	file_data->return_value = OK;
-	validate_cub_and_map_file(file_data, (const char **)argv);
+	check_cub_file(file_data, (const char **)argv);
 	if (file_data->return_value != OK)
-		exit_parsing(file_data, file_data->return_value);
+		exit_from_parse(file_data, file_data->return_value);
 }
 
-static t_return_value	migrate_data_file_to_render(
+t_return_value	move_data_to_render(
 		t_file_data *file_data, t_data *render_data)
 {
 	render_data->texture.north = mlx_load_png(file_data->north_texture);
@@ -60,29 +60,27 @@ static t_return_value	migrate_data_file_to_render(
 	render_data->map.content = (int **)file_data->map_as_array;
 	render_data->player.pos.x = file_data->player_x + 0.5;
 	render_data->player.pos.y = file_data->player_y + 0.5;
-	migrate_player_direction(file_data, render_data);
-	migrate_colors(file_data, render_data);
+	move_player_direction(file_data, render_data);
+	move_colors(file_data, render_data);
 	return (OK);
 }
 
-void	init_game(t_file_data *file_data, t_data *render_data)
+void	init(t_file_data *file_data, t_data *render_data)
 {
 	render_data->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D", false);
 	if (!render_data->mlx)
-		exit_parsing(file_data, MALLOC_FAIL);
+		exit_from_parse(file_data, MALLOC_FAIL);
 	render_data->img = mlx_new_image(render_data->mlx,
 			WINDOW_WIDTH, WINDOW_HEIGHT);
-	if (!render_data->img)
-		exit_mlx_parsing(file_data, FAIL, render_data->mlx);
-	if (migrate_data_file_to_render(file_data, render_data) == FAIL)
-		exit_mlx_parsing(file_data, FAIL, render_data->mlx);
-	if (mlx_image_to_window(render_data->mlx, render_data->img, 0, 0) < 0)
-		exit_mlx_parsing(file_data, FAIL, render_data->mlx);
-	free_file_data_not_map(file_data);
+	if ((!render_data->img
+			|| (move_data_to_render(file_data, render_data) == FAIL))
+		|| (mlx_image_to_window(render_data->mlx, render_data->img, 0, 0) < 0))
+		exit_mlx_parse(file_data, FAIL, render_data->mlx);
+	clean_struct_4_map(file_data);
 	check_all_textures(render_data);
-	mlx_loop_hook(render_data->mlx, loop_hook, render_data);
-	mlx_close_hook(render_data->mlx, close_hook, render_data);
-	mlx_key_hook(render_data->mlx, key_hook, render_data);
+	mlx_loop_hook(render_data->mlx, hook_loop, render_data);
+	mlx_close_hook(render_data->mlx, hook_close, render_data);
+	mlx_key_hook(render_data->mlx, hook_key, render_data);
 }
 
 int	main(int argc, char **argv)
@@ -92,9 +90,9 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		exit_bad_argc();
-	parsing_main(&file_data, argv);
-	init_game(&file_data, &render_data);
+	parse(&file_data, argv);
+	init(&file_data, &render_data);
 	mlx_loop(render_data.mlx);
-	clean_exit(&render_data, 0);
+	clean_and_exit(&render_data, 0);
 	return (0);
 }
