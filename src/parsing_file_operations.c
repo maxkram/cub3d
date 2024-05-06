@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:10:29 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/06 00:48:31 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/06 01:28:31 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,13 @@ t_return_value	open_and_check_file(t_file_data *data,
 	return (data->return_value);
 }
 
-/**
- * @brief Concatenate a line to the file content string.
- *
- * This function concatenates a line of text to the existing
- * file content string. It ensures that memory is properly allocated
- * for the updated content and handles memory allocation failures
- * by setting the appropriate error code.
- *
- * @param data A pointer to the t_file_data structure.
- * @param line A pointer to the line to be concatenated.
- * @return The exit code indicating success or failure.
- */
-static t_return_value	concatenate_line_buffer_to_string(t_file_data *data,
+t_return_value	concat_temp_to_string(t_file_data *data,
 		char *line)
 {
 	char	*temp;
 
 	temp = ft_strdup(data->file_content_as_string);
-	if (temp == NULL)
+	if (!temp)
 	{
 		data->return_value = MALLOC_FAIL;
 		return (data->return_value);
@@ -51,7 +39,7 @@ static t_return_value	concatenate_line_buffer_to_string(t_file_data *data,
 	free(data->file_content_as_string);
 	data->file_content_as_string = ft_strjoin(temp, line);
 	free(temp);
-	if (data->file_content_as_string == NULL)
+	if (!(data->file_content_as_string))
 		data->return_value = MALLOC_FAIL;
 	return (data->return_value);
 }
@@ -81,7 +69,7 @@ t_return_value	scene_content_to_string(t_file_data *data, const char **path)
 		line_buffer = get_next_line(data->file_descriptor);
 		if (line_buffer == NULL)
 			break ;
-		if (concatenate_line_buffer_to_string(data,
+		if (concat_temp_to_string(data,
 				line_buffer) == MALLOC_FAIL)
 		{
 			free(line_buffer);
