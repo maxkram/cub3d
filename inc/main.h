@@ -181,7 +181,7 @@ void				draw_texture(t_data *d, t_ray *ray, int x);
 void				init_ray_base_values(t_data *d, t_ray *ray, int x);
 void				init_ray_delta(t_ray *ray);
 void				init_ray_side_distance(t_data *d, t_ray *ray);
-t_return_value		get_rgb_colors(t_file_data *data);
+t_return_value		get_colors(t_file_data *data);
 t_bool				ft_is_numerical(char *str);
 void				exit_from_parse(t_file_data *file_data, int return_value);
 void				exit_mlx_parse(t_file_data *file_data,

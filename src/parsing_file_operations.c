@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:10:29 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/05 02:28:30 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/06 00:37:24 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ t_return_value	check_scene_demands(t_file_data *data)
 		return (data->return_value);
 	if (validate_color_strings(data) != OK)
 		return (data->return_value);
-	if (get_rgb_colors(data) != OK)
+	if (get_colors(data) != OK)
 		return (data->return_value);
 	return (data->return_value);
 }

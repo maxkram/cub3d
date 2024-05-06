@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:18:09 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/06 00:26:21 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/06 00:38:34 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,40 +48,40 @@ t_color	return_colors(t_file_data *data, char **rgb)
 	return (colors);
 }
 
-static void	free_grid(char **grid)
+void	clean_grid(char **grid)
 {
 	int	i;
 
+	i = 0;
 	if (!grid)
 		return ;
-	i = 0;
 	while (grid[i])
 		free(grid[i++]);
 	free(grid);
 }
 
-t_return_value	get_rgb_colors(t_file_data *data)
+t_return_value	get_colors(t_file_data *data)
 {
-	char	**ceiling_colors;
-	char	**floor_colors;
+	char	**ceiling_rgbas;
+	char	**floor_rgbas;
 
-	ceiling_colors = ft_split(data->ceiling_color, ',');
-	if (!ceiling_colors)
+	ceiling_rgbas = ft_split(data->ceiling_color, ',');
+	if (!ceiling_rgbas)
 	{
 		data->return_value = MALLOC_FAIL;
 		return (data->return_value);
 	}
-	data->ceiling_rgb = return_colors(data, ceiling_colors);
-	free_grid(ceiling_colors);
+	data->ceiling_rgb = return_colors(data, ceiling_rgbas);
+	clean_grid(ceiling_rgbas);
 	if (data->return_value != OK)
 		return (data->return_value);
-	floor_colors = ft_split(data->floor_color, ',');
-	if (!floor_colors)
+	floor_rgbas = ft_split(data->floor_color, ',');
+	if (!floor_rgbas)
 	{
 		data->return_value = MALLOC_FAIL;
 		return (data->return_value);
 	}
-	data->floor_rgb = return_colors(data, floor_colors);
-	free_grid(floor_colors);
+	data->floor_rgb = return_colors(data, floor_rgbas);
+	clean_grid(floor_rgbas);
 	return (data->return_value);
 }
