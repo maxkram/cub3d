@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:10:29 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/06 01:28:31 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/06 01:44:25 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_return_value	open_and_check_file(t_file_data *data,
 	{
 		data->return_value = FILE_OPEN_FAIL;
 		close(data->file_descriptor);
-		// return (data->return_value);
 	}
 	return (data->return_value);
 }
@@ -44,30 +43,18 @@ t_return_value	concat_temp_to_string(t_file_data *data,
 	return (data->return_value);
 }
 
-/**
- * @brief Get the contents of the scene description file into a string.
- *
- * This function reads the contents of the scene description file line by line
- * and stores them in a string buffer. It handles file opening errors, memory
- * allocation failures, and closes the file when finished.
- *
- * @param data A pointer to the t_file_data structure.
- * @param path An array containing the path to the scene description file.
- * @return The exit code indicating success or failure.
- */
-t_return_value	scene_content_to_string(t_file_data *data, const char **path)
+t_return_value	map_to_string(t_file_data *data, const char **path)
 {
 	char	*line_buffer;
 
-	if (open_and_check_file(data, path) == FILE_OPEN_FAIL)
-		return (data->return_value);
-	if (initialize_string_buffers(&line_buffer, data) == MALLOC_FAIL)
+	if ((open_and_check_file(data, path) == FILE_OPEN_FAIL)
+		|| (initialize_string_buffers(&line_buffer, data) == MALLOC_FAIL))
 		return (data->return_value);
 	while (line_buffer)
 	{
 		free(line_buffer);
 		line_buffer = get_next_line(data->file_descriptor);
-		if (line_buffer == NULL)
+		if (!line_buffer)
 			break ;
 		if (concat_temp_to_string(data,
 				line_buffer) == MALLOC_FAIL)

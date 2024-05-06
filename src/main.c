@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:13:53 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/05 02:28:32 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/06 01:37:48 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_return_value	check_cub_file(
 
 	if (check_file_type(data, path_to_file) == OK)
 	{
-		if (scene_content_to_string(data, path_to_file) == FILE_OPEN_FAIL)
+		if (map_to_string(data, path_to_file) == FILE_OPEN_FAIL)
 			return (data->return_value);
 		temp = ft_strtrim(data->file_content_as_string, " \t\v\f\r\n");
 		free(data->file_content_as_string);
