@@ -152,7 +152,7 @@ typedef struct s_ray
 
 // Function declarations
 void				initialize_struct(t_file_data *structure_pointer);
-void				print_parsing_error_message(t_return_value error);
+void				print_parse_error(t_return_value error);
 t_return_value		check_file_type(t_file_data *data,
 						const char **path_to_file);
 t_return_value		scene_content_to_string(t_file_data *data,

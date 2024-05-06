@@ -6,30 +6,13 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:18:09 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/02 01:26:50 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/06 00:16:32 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/main.h"
 
-// static void	check_grid_len_and_validate(t_file_data *data, char **grid)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (grid[i])
-// 		i++;
-// 	if (i != 3)
-// 	{
-// 		data->return_value = WRONG_COLORS;
-// 		return ;
-// 	}
-// 	if (!ft_is_numerical(grid[0])
-// 		|| !ft_is_numerical(grid[1]) || !ft_is_numerical(grid[2]))
-// 		data->return_value = WRONG_COLORS;
-// }
-
-static void	check_grid_len_and_validate(t_file_data *data, char **grid)
+void	check_length_and_validate(t_file_data *data, char **grid)
 {
 	if (ft_arraylen(grid) != 3)
 	{
@@ -41,11 +24,9 @@ static void	check_grid_len_and_validate(t_file_data *data, char **grid)
 		data->return_value = WRONG_COLORS;
 }
 
-static t_bool	is_valid_color_value(int color)
+bool is_good_color(int color)
 {
-	if (color >= 0 && color < 256)
-		return (TRUE);
-	return (FALSE);
+    return (color >= 0 && color < 256);
 }
 
 static t_color	ret_colors(t_file_data *data, char **rgb)
@@ -56,16 +37,16 @@ static t_color	ret_colors(t_file_data *data, char **rgb)
 	colors.red = 0;
 	colors.green = 0;
 	colors.blue = 0;
-	check_grid_len_and_validate(data, rgb);
+	check_length_and_validate(data, rgb);
 	if (data->return_value != OK)
 		return (colors);
 	colors.red = ft_atoi(rgb[0]);
 	colors.green = ft_atoi(rgb[1]);
 	colors.blue = ft_atoi(rgb[2]);
 	valid_colors = 0;
-	valid_colors += is_valid_color_value(colors.red);
-	valid_colors += is_valid_color_value(colors.green);
-	valid_colors += is_valid_color_value(colors.blue);
+	valid_colors += is_good_color(colors.red);
+	valid_colors += is_good_color(colors.green);
+	valid_colors += is_good_color(colors.blue);
 	if (valid_colors < 3)
 		data->return_value = WRONG_COLORS;
 	return (colors);

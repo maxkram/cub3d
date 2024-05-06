@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:22:47 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/02 01:27:13 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/06 00:08:41 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	initialize_struct(t_file_data *structure_pointer)
 	ft_bzero(structure_pointer, sizeof(*structure_pointer));
 }
 
-void	print_parsing_error_message_2(t_return_value error)
+void	print_parse_error_2(t_return_value error)
 {
 	if (error == NO_ELEMENT_FOUND)
 		printf("Error\nWrong format of cub file\n");
@@ -43,7 +43,7 @@ void	print_parsing_error_message_2(t_return_value error)
 		printf("Error\nDuplicates\n");
 }
 
-void	print_parsing_error_message(t_return_value error)
+void	print_parse_error(t_return_value error)
 {
 	if (error == MALLOC_FAIL)
 		printf("Error\nMemory issues\n");
@@ -60,7 +60,7 @@ void	print_parsing_error_message(t_return_value error)
 	if (error == MISSING_ELEMENTS)
 		printf("Error\nMissed the map's elements\n");
 	else
-		print_parsing_error_message_2(error);
+		print_parse_error_2(error);
 }
 
 void	clean_up_parsing(t_file_data *data)
