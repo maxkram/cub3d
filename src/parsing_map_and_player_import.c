@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:19:07 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/07 01:35:48 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/07 01:43:28 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,11 @@ void	fill_player_data(t_file_data *data, char *input_string,
 	input_string[data->current_position] = '0';
 }
 
-/**
- * @brief Get player spawn position and direction.
- *
- * This function extracts the player's spawn position and direction from the
- * scene description and updates the corresponding fields in the data structure.
- *
- * @param data A pointer to the t_file_data structure.
- * @param input_string The string containing player data.
- * @param spawn_direction_delimiter Delimiter for spawn direction 
- * (e.g., "NSEW" for North, South, East, West).
- * @return The exit code indicating success or failure.
- */
-static t_return_value
-	get_player_spawn_position_and_direction(t_file_data *data,
+t_return_value	get_player_position(t_file_data *data,
 										char *input_string,
 										const char *spawn_direction_delimiter)
 {
-	while (input_string[data->current_position] != '\0')
+	while (input_string[data->current_position])
 	{
 		if (input_string[data->current_position] == '\n')
 		{
@@ -46,7 +33,7 @@ static t_return_value
 			data->last_new_line_position = data->current_position;
 		}
 		data->direction_index = 0;
-		while (spawn_direction_delimiter[data->direction_index] != '\0')
+		while (spawn_direction_delimiter[data->direction_index])
 		{
 			if (input_string[data->current_position]
 				== spawn_direction_delimiter[data->direction_index])
@@ -114,7 +101,7 @@ t_return_value	map_import_and_preparation(t_file_data *data,
 	}
 	if (get_map_amount_of_lines(data, map_as_string) == MAP_CONTENT_NOT_VALID)
 		return (data->return_value);
-	if (get_player_spawn_position_and_direction(
+	if (get_player_position(
 			data, map_as_string, SPAWN_DIRECTION) != OK)
 		return (data->return_value);
 	if (check_for_garbage_data_in_remaining_map(data,
