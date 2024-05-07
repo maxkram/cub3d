@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:19:07 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/07 02:46:12 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/07 05:37:34 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ void	fill_player_data(t_file_data *data, char *input_string,
 }
 
 t_return_value	get_player_position(t_file_data *data,
-										char *input_string,
-										const char *spawn_direction_delimiter)
+	char *input_string, const char *spawn_direction_delimiter)
 {
 	while (input_string[data->current_position])
 	{
@@ -66,18 +65,7 @@ t_return_value	check_symbols_in_map(t_file_data *data,
 	return (data->return_value);
 }
 
-/**
- * @brief Import and prepare map elements from a text file.
- *
- * This function parses the input scene description and prepares map elements
- * for use, including the map content and player data. SPAWN_DIRECTION is 
- * defined as the following delimiter string "NSEW"
- *
- * @param data A pointer to the t_file_data structure.
- * @param map_as_string The string containing map data.
- * @return The exit code indicating success or failure.
- */
-t_return_value	map_import_and_preparation(t_file_data *data,
+t_return_value	import_and_prepare_map(t_file_data *data,
 		char *map_as_string)
 {
 	if (data->elements_found != 6)

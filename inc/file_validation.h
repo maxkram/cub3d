@@ -95,7 +95,7 @@ t_return_value		transfer_remaining_string_to_map_array(t_file_data *data,
 t_return_value		initialize_string_buffers(char **line_buffer,
 						t_file_data *data);
 int					get_max_line_length(char *map_as_string);
-t_return_value		map_import_and_preparation(t_file_data *data,
+t_return_value		import_and_prepare_map(t_file_data *data,
 						char *map_as_string);
 t_return_value		check_map_does_not_contain_empty_lines(t_file_data *data,
 						char *map_as_string);

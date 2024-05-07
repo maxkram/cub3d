@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:20:11 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/02 01:27:05 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/07 05:29:25 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,6 @@ t_return_value
 		&& *element_starts != '\0' && *element_starts == '\n')
 		element_starts++;
 	if (data->return_value == OK)
-		map_import_and_preparation(data, element_starts);
+		import_and_prepare_map(data, element_starts);
 	return (data->return_value);
 }
