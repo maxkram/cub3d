@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:10:29 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/07 01:16:08 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/07 01:21:02 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,21 +90,11 @@ t_return_value	check_file_type(t_file_data *data, const char **path_to_file)
 	return (data->return_value);
 }
 
-/**
- * @brief Validate scene requirements and import map elements.
- *
- * This function validates the scene requirements and imports map elements.
- *
- * @param data The structure to store the extracted elements.
- * @return A return code indicating success or failure.
- */
 t_return_value	check_scene_demands(t_file_data *data)
 {
-	if (get_scene_elements_and_map(data) != OK)
-		return (data->return_value);
-	if (validate_color_strings(data) != OK)
-		return (data->return_value);
-	if (get_colors(data) != OK)
+	if ((get_scene_elements_and_map(data) != OK)
+		|| (validate_color_strings(data) != OK)
+		|| (get_colors(data) != OK))
 		return (data->return_value);
 	return (data->return_value);
 }
