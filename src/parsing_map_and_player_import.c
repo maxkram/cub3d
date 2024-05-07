@@ -6,24 +6,13 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:19:07 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/02 01:24:32 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/07 01:35:48 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/main.h"
 
-/**
- * @brief Set player data based on the input string and player spawn direction.
- *
- * This function sets the player's spawn position and direction based on the
- * provided input string and player spawn direction.
- *
- * @param data A pointer to the t_file_data structure.
- * @param input_string The string containing player data.
- * @param player_spawn_direction The player's spawn direction.
- */
-static void
-	set_player_data(t_file_data *data, char *input_string,
+void	fill_player_data(t_file_data *data, char *input_string,
 		char player_spawn_direction)
 {
 	data->player_x = data->current_position - data->last_new_line_position - 1;
@@ -62,7 +51,7 @@ static t_return_value
 			if (input_string[data->current_position]
 				== spawn_direction_delimiter[data->direction_index])
 			{
-				set_player_data(data, input_string,
+				fill_player_data(data, input_string,
 					spawn_direction_delimiter[data->direction_index]);
 				return (data->return_value);
 			}
