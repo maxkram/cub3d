@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:10:29 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/06 01:44:25 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/07 01:16:08 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,9 @@ t_return_value	check_file_type(t_file_data *data, const char **path_to_file)
 	{
 		len = ft_strlen(path);
 		end4 = ft_substr(path, len - 4, 4);
-		if (ft_strncmp(".cub", end4, 4) == 0)
-			free(end4);
-		else
-		{
-			free(end4);
+		if (ft_strncmp(".cub", end4, 4))
 			data->return_value = NEED_MAP_CUB_FILE;
-		}
+		free(end4);
 	}
 	return (data->return_value);
 }
