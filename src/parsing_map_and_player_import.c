@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:19:07 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/07 01:43:28 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/07 02:46:12 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,10 @@ t_return_value	get_player_position(t_file_data *data,
 	return (data->return_value);
 }
 
-/**
- * @brief Check for garbage data before the map in the input string.
- *
- * This function checks for invalid characters or data before the map content
- * in the input string and sets the appropriate error code if found.
- *
- * @param data A pointer to the t_file_data structure.
- * @param map_as_string The string containing map data.
- * @return The exit code indicating success or failure.
- */
-static t_return_value
-	check_for_garbage_data_in_remaining_map(t_file_data *data,
+t_return_value	check_symbols_in_map(t_file_data *data,
 										char *map_as_string)
 {
-	while (*map_as_string && *map_as_string != '\0')
+	while (*map_as_string)
 	{
 		if (*map_as_string != ' ' && *map_as_string != '0'
 			&& *map_as_string != '1' && *map_as_string != '\n')
@@ -104,7 +93,7 @@ t_return_value	map_import_and_preparation(t_file_data *data,
 	if (get_player_position(
 			data, map_as_string, SPAWN_DIRECTION) != OK)
 		return (data->return_value);
-	if (check_for_garbage_data_in_remaining_map(data,
+	if (check_symbols_in_map(data,
 			map_as_string) == GARBAGE_DATA)
 		return (data->return_value);
 	if (check_map_does_not_contain_empty_lines(data,
