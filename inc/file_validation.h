@@ -90,7 +90,7 @@ t_return_value		check_scene_demands(t_file_data *data);
 t_return_value		get_map_amount_of_lines(t_file_data *data,
 						char *map_as_string);
 char				*skip_leading_white_spaces(char *string_beginning);
-t_return_value		transfer_remaining_string_to_map_array(t_file_data *data,
+t_return_value		move_string_to_map_array(t_file_data *data,
 						char *map_as_string);
 t_return_value		initialize_string_buffers(char **line_buffer,
 						t_file_data *data);

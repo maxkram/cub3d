@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:19:34 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/09 02:40:18 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/09 03:04:59 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,23 +70,8 @@ void	data_map_to_array(char *line_starts, t_file_data *data,
 	data->map_as_array[current_line][max_line_length] = NEW_LINE;
 }
 
-/**
- * @brief Allocate memory for the map array and copy map data.
- *
- * This function allocates memory for the map array and copies the map data from
- * the string.
- *
- * @param data The structure to store imported data.
- * @param map_as_string The string with map data.
- * @param max_line_length The maximum length of a map line.
- * @param current_line The current line being processed.
- * @param line_starts The starting point of the current map line.
- * @return A return code indicating success or failure.
- */
-static t_return_value	allocate_map_array_and_copy_data(t_file_data *data,
-														int max_line_length,
-														int current_line,
-														char *line_starts)
+t_return_value	create_map_for_data(t_file_data *data,
+	int max_line_length, int current_line, char *line_starts)
 {
 	data->map_as_array[current_line] = (t_map_tile *)ft_calloc(max_line_length
 			+ 1, sizeof(int));
@@ -99,33 +84,22 @@ static t_return_value	allocate_map_array_and_copy_data(t_file_data *data,
 	return (data->return_value);
 }
 
-/**
- * @brief Transfer the map data from a string to a map array.
- *
- * This function transfers the map data from a string to a map array.
- *
- * @param data The structure to store imported data.
- * @param map_as_string The string with map data.
- * @param max_line_length The maximum length of a map line.
- * @return A return code indicating success or failure.
- */
-t_return_value
-	transfer_remaining_string_to_map_array(t_file_data *data,
+t_return_value	move_string_to_map_array(t_file_data *data,
 		char *map_as_string)
 {
 	char	*line_starts;
 	int		current_line;
 
-	data->max_map_width = get_max_line_length(map_as_string);
 	current_line = 0;
 	line_starts = map_as_string;
+	data->max_map_width = get_max_line_length(map_as_string);
 	data->map_as_array = (t_map_tile **)
 		ft_calloc(data->map_number_of_lines + 1, sizeof(int *));
 	if (!data->map_as_array)
 		return (data->return_value = MALLOC_FAIL);
-	while (*line_starts != '\0' && current_line < data->map_number_of_lines)
+	while (current_line < data->map_number_of_lines && *line_starts)
 	{
-		if (allocate_map_array_and_copy_data(data, data->max_map_width,
+		if (create_map_for_data(data, data->max_map_width,
 				current_line, line_starts) != OK)
 			return (data->return_value);
 		line_starts = ft_strchr(line_starts, '\n');
