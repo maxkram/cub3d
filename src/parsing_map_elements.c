@@ -6,105 +6,60 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:19:34 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/02 01:27:00 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/09 02:40:18 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/main.h"
 
-/**
- * @brief Checks if a position in the map is either a wall or floor.
- *
- * This function checks if the specified position in the map is either a wall or
- * a floor. It returns `TRUE` if the given position is surrounded by walls or
- * floors and `FALSE` otherwise.
- *
- * @param data The map data structure.
- * @param line The line (Y-coordinate) of the position to check.
- * @param column The column (X-coordinate) of the position to check.
- * @param map_width The width of the map.
- * @return `TRUE` if the position is a wall or floor, `FALSE` otherwise.
- */
-t_bool	is_wall_or_floor(t_file_data *data, int line, int column, int map_width)
+t_bool	is_floor(t_file_data *data, int line, int col, int map_width)
 {
-	t_bool	is_wall_or_floor;
-
-	is_wall_or_floor = FALSE;
-	if (line > 0 && line < (data->map_number_of_lines - 1)
-		&& column > 0 && column < map_width)
-	{
-		if (data->map_as_array[line - 1][column] < 2
-			&& data->map_as_array[line + 1][column] < 2
-			&& data->map_as_array[line][column - 1] < 2
-			&& data->map_as_array[line][column + 1] < 2)
-		{
-			is_wall_or_floor = TRUE;
-		}
-	}
-	return (is_wall_or_floor);
+	if (line <= 0 || line >= data->map_number_of_lines - 1
+		|| col <= 0 || col >= map_width)
+		return (FALSE);
+	return (data->map_as_array[line - 1][col] <= 1 &&
+			data->map_as_array[line + 1][col] <= 1 &&
+			data->map_as_array[line][col - 1] <= 1 &&
+			data->map_as_array[line][col + 1] <= 1);
 }
 
-/**
- * @brief Validates the entire map for wall breaches.
- *
- * This function validates the entire map to ensure that all floor positions are
- * surrounded by walls or floors. If a floor position is not surrounded
- * properly, it sets the `data->return_value` to `OPEN_WALL`.
- *
- * @param data The map data structure.
- * @param map_width The width of the map.
- * @return The validation result (`OPEN_WALL` or no error).
- * @details map_number_or_lines includes a last NULL terminated line
- */
 t_return_value	validate_map(t_file_data *data, int map_width)
 {
 	int	line;
-	int	column;
+	int	col;
 
 	line = 0;
+	col = 0;
 	while (line < data->map_number_of_lines)
 	{
-		column = 0;
-		while (column < map_width)
+		while (col < map_width)
 		{
-			if (data->map_as_array[line][column] == FLOOR)
+			if (data->map_as_array[line][col] == FLOOR)
 			{
 				if (line == (data->map_number_of_lines - 1)
-					|| !is_wall_or_floor(data, line, column, map_width))
+					|| !is_floor(data, line, col, map_width))
 					data->return_value = OPEN_WALL;
 			}
-			column++;
+			col++;
 		}
+		col = 0;
 		line++;
 	}
 	return (data->return_value);
 }
 
-/**
- * @brief Copy map data to a 2D array.
- *
- * This function copies the map data from the string to a 2D array and converts
- * the characters to their corresponding integer values (e.g., '0' to FLOOR).
- *
- * @param line_starts The start of the line in the map string.
- * @param data A pointer to the t_file_data structure.
- * @param max_line_length The maximum line length.
- * @param current_line The current line number being processed.
- */
-static void	copy_map_data(char *line_starts, t_file_data *data,
+void	data_map_to_array(char *line_starts, t_file_data *data,
 		int max_line_length, int current_line)
 {
 	int	i;
 
 	i = 0;
 	while (i < max_line_length && line_starts[i] != '\n'
-		&& line_starts[i] != '\0')
+		&& line_starts[i])
 	{
-		if (line_starts[i] == '0')
-			data->map_as_array[current_line][i] = FLOOR;
-		else if (line_starts[i] == '1')
+		if (line_starts[i] == '1')
 			data->map_as_array[current_line][i] = WALL;
-		else if (line_starts[i] == ' ')
+		else if (line_starts[i] == 32)
 			data->map_as_array[current_line][i] = EMPTY;
 		else
 			data->map_as_array[current_line][i] = FLOOR;
@@ -140,7 +95,7 @@ static t_return_value	allocate_map_array_and_copy_data(t_file_data *data,
 		data->return_value = MALLOC_FAIL;
 		return (data->return_value);
 	}
-	copy_map_data(line_starts, data, max_line_length, current_line);
+	data_map_to_array(line_starts, data, max_line_length, current_line);
 	return (data->return_value);
 }
 

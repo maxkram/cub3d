@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:19:07 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/09 01:04:28 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/09 01:18:37 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_return_value	import_and_prepare_map(t_file_data *data,
 		|| (get_player_position(data, map_as_string, SPAWN_DIRECTION) != OK)
 		|| (check_symbols_in_map(data, map_as_string) == GARBAGE_DATA)
 		|| (check_map_does_not_contain_empty_lines(data,
-			map_as_string) == MAP_CONTAINS_EMPTY_LINE))
+				map_as_string) == MAP_CONTAINS_EMPTY_LINE))
 		return (data->return_value);
 	transfer_remaining_string_to_map_array(data, map_as_string);
 	return (data->return_value);
