@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:18:09 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/06 00:38:34 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/10 02:39:26 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,12 @@ void	clean_grid(char **grid)
 	free(grid);
 }
 
-t_return_value	get_colors(t_file_data *data)
+t_value	get_colors(t_file_data *data)
 {
 	char	**ceiling_rgbas;
 	char	**floor_rgbas;
 
-	ceiling_rgbas = ft_split(data->ceiling_color, ',');
+	ceiling_rgbas = ft_split(data->ceiling, ',');
 	if (!ceiling_rgbas)
 	{
 		data->return_value = MALLOC_FAIL;
@@ -75,7 +75,7 @@ t_return_value	get_colors(t_file_data *data)
 	clean_grid(ceiling_rgbas);
 	if (data->return_value != OK)
 		return (data->return_value);
-	floor_rgbas = ft_split(data->floor_color, ',');
+	floor_rgbas = ft_split(data->floor, ',');
 	if (!floor_rgbas)
 	{
 		data->return_value = MALLOC_FAIL;

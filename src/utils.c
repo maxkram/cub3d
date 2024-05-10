@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:22:47 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/10 01:57:34 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/10 02:41:51 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	initialize_struct(t_file_data *structure_pointer)
 	ft_bzero(structure_pointer, sizeof(*structure_pointer));
 }
 
-void	print_parse_error_2(t_return_value error)
+void	print_parse_error_2(t_value error)
 {
 	if (error == NO_SYMBOLS)
 		printf("Error\nWrong format of cub file\n");
@@ -43,7 +43,7 @@ void	print_parse_error_2(t_return_value error)
 		printf("Error\nDuplicates\n");
 }
 
-void	print_parse_error(t_return_value error)
+void	print_parse_error(t_value error)
 {
 	if (error == MALLOC_FAIL)
 		printf("Error\nMemory issues\n");
@@ -67,18 +67,18 @@ void	clean_up_parsing(t_file_data *data)
 {
 	int	i;
 
-	free(data->north_texture);
-	free(data->south_texture);
-	free(data->west_texture);
-	free(data->east_texture);
-	free(data->floor_color);
-	free(data->ceiling_color);
-	free(data->file_content_as_string);
-	if (data->map_as_array)
+	free(data->north);
+	free(data->south);
+	free(data->west);
+	free(data->est);
+	free(data->floor);
+	free(data->ceiling);
+	free(data->file_to_string);
+	if (data->map_to_array)
 	{
 		i = 0;
-		while (data->map_as_array[i])
-			free(data->map_as_array[i++]);
-		free(data->map_as_array);
+		while (data->map_to_array[i])
+			free(data->map_to_array[i++]);
+		free(data->map_to_array);
 	}
 }

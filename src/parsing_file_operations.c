@@ -6,44 +6,44 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:10:29 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/10 01:13:00 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/10 02:46:54 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/main.h"
 
-t_return_value	open_and_check_file(t_file_data *data,
+t_value	open_and_check_file(t_file_data *data,
 		const char **path)
 {
-	data->file_descriptor = open(path[1], O_RDONLY);
-	if (data->file_descriptor == -1)
+	data->fd = open(path[1], O_RDONLY);
+	if (data->fd == -1)
 	{
 		data->return_value = FILE_OPEN_FAIL;
-		close(data->file_descriptor);
+		close(data->fd);
 	}
 	return (data->return_value);
 }
 
-t_return_value	concat_temp_to_string(t_file_data *data,
+t_value	concat_temp_to_string(t_file_data *data,
 		char *line)
 {
 	char	*temp;
 
-	temp = ft_strdup(data->file_content_as_string);
+	temp = ft_strdup(data->file_to_string);
 	if (!temp)
 	{
 		data->return_value = MALLOC_FAIL;
 		return (data->return_value);
 	}
-	free(data->file_content_as_string);
-	data->file_content_as_string = ft_strjoin(temp, line);
+	free(data->file_to_string);
+	data->file_to_string = ft_strjoin(temp, line);
 	free(temp);
-	if (!(data->file_content_as_string))
+	if (!(data->file_to_string))
 		data->return_value = MALLOC_FAIL;
 	return (data->return_value);
 }
 
-t_return_value	map_to_string(t_file_data *data, const char **path)
+t_value	map_to_string(t_file_data *data, const char **path)
 {
 	char	*line_buffer;
 
@@ -53,7 +53,7 @@ t_return_value	map_to_string(t_file_data *data, const char **path)
 	while (line_buffer)
 	{
 		free(line_buffer);
-		line_buffer = get_next_line(data->file_descriptor);
+		line_buffer = get_next_line(data->fd);
 		if (!line_buffer)
 			break ;
 		if (concat_temp_to_string(data,
@@ -65,13 +65,13 @@ t_return_value	map_to_string(t_file_data *data, const char **path)
 	}
 	if (line_buffer)
 		free(line_buffer);
-	close(data->file_descriptor);
+	close(data->fd);
 	return (data->return_value);
 }
 //it checks the file type ".cub". If it's not correct
 //it assigns the error code in the file_data structure
 
-t_return_value	check_file_type(t_file_data *data, const char **path_to_file)
+t_value	check_file_type(t_file_data *data, const char **path_to_file)
 {
 	const char	*path;
 	char		*end4;
@@ -90,7 +90,7 @@ t_return_value	check_file_type(t_file_data *data, const char **path_to_file)
 	return (data->return_value);
 }
 
-t_return_value	check_scene_demands(t_file_data *data)
+t_value	check_scene_demands(t_file_data *data)
 {
 	if ((get_scene_elements_and_map(data) != OK)
 		|| (validate_color_strings(data) != OK)

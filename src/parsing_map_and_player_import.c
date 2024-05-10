@@ -6,22 +6,22 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:19:07 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/10 02:23:15 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/10 02:45:21 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/main.h"
 
 void	fill_player_data(t_file_data *data, char *input_string,
-		char player_spawn_direction)
+		char player_birth_direct)
 {
 	data->player_x = data->current_position - data->last_new_line_position - 1;
 	data->player_y = data->line_count;
-	*data->player_spawn_direction = player_spawn_direction;
+	*data->player_birth_direct = player_birth_direct;
 	input_string[data->current_position] = '0';
 }
 
-t_return_value	get_player_position(t_file_data *data,
+t_value	get_player_position(t_file_data *data,
 	char *input_string, const char *spawn_direction_delimiter)
 {
 	while (input_string[data->current_position])
@@ -49,7 +49,7 @@ t_return_value	get_player_position(t_file_data *data,
 	return (data->return_value);
 }
 
-t_return_value	check_symbols_in_map(t_file_data *data,
+t_value	check_symbols_in_map(t_file_data *data,
 										char *map_as_string)
 {
 	while (*map_as_string)
@@ -65,12 +65,12 @@ t_return_value	check_symbols_in_map(t_file_data *data,
 	return (data->return_value);
 }
 
-t_return_value	import_and_prepare_map(t_file_data *data,
+t_value	import_and_prepare_map(t_file_data *data,
 		char *map_as_string)
 {
-	if (data->elements_found != 6)
+	if (data->symbols_found != 6)
 	{
-		if (data->elements_found != 0)
+		if (data->symbols_found != 0)
 			data->return_value = MISSING_SYMBOL;
 		else
 			data->return_value = NO_SYMBOLS;

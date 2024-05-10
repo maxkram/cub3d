@@ -6,13 +6,13 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:13:53 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/06 01:37:48 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/10 02:50:03 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/main.h"
 
-t_return_value	check_cub_file(
+t_value	check_cub_file(
 		t_file_data *data, const char **path_to_file)
 {
 	char	*temp;
@@ -21,9 +21,9 @@ t_return_value	check_cub_file(
 	{
 		if (map_to_string(data, path_to_file) == FILE_OPEN_FAIL)
 			return (data->return_value);
-		temp = ft_strtrim(data->file_content_as_string, " \t\v\f\r\n");
-		free(data->file_content_as_string);
-		data->file_content_as_string = ft_strdup(temp);
+		temp = ft_strtrim(data->file_to_string, " \t\v\f\r\n");
+		free(data->file_to_string);
+		data->file_to_string = ft_strdup(temp);
 		free(temp);
 	}
 	if (data->return_value == OK)
@@ -40,24 +40,24 @@ void	parse(t_file_data *file_data, char **argv)
 		exit_from_parse(file_data, file_data->return_value);
 }
 
-t_return_value	move_data_to_render(
+t_value	move_data_to_render(
 		t_file_data *file_data, t_data *render_data)
 {
-	render_data->texture.north = mlx_load_png(file_data->north_texture);
+	render_data->texture.north = mlx_load_png(file_data->north);
 	if (!render_data->texture.north)
 		return (FAIL);
-	render_data->texture.east = mlx_load_png(file_data->east_texture);
+	render_data->texture.east = mlx_load_png(file_data->est);
 	if (!render_data->texture.east)
 		return (FAIL);
-	render_data->texture.south = mlx_load_png(file_data->south_texture);
+	render_data->texture.south = mlx_load_png(file_data->south);
 	if (!render_data->texture.south)
 		return (FAIL);
-	render_data->texture.west = mlx_load_png(file_data->west_texture);
+	render_data->texture.west = mlx_load_png(file_data->west);
 	if (!render_data->texture.west)
 		return (FAIL);
-	render_data->map.height = file_data->map_number_of_lines;
-	render_data->map.width = file_data->max_map_width;
-	render_data->map.content = (int **)file_data->map_as_array;
+	render_data->map.height = file_data->number_of_lines;
+	render_data->map.width = file_data->max_width;
+	render_data->map.content = (int **)file_data->map_to_array;
 	render_data->player.pos.x = file_data->player_x + 0.5;
 	render_data->player.pos.y = file_data->player_y + 0.5;
 	move_player_direction(file_data, render_data);

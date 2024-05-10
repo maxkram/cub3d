@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:10:06 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/05 01:04:30 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/10 02:40:22 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	exit_bad_argc(void)
 
 void	clean_struct_4_map(t_file_data *data)
 {
-	free(data->north_texture);
-	free(data->south_texture);
-	free(data->west_texture);
-	free(data->east_texture);
-	free(data->floor_color);
-	free(data->ceiling_color);
-	free(data->file_content_as_string);
+	free(data->north);
+	free(data->south);
+	free(data->west);
+	free(data->est);
+	free(data->floor);
+	free(data->ceiling);
+	free(data->file_to_string);
 }

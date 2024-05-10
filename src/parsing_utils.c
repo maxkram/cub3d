@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:20:45 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/10 01:14:33 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/10 02:46:57 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,22 @@
  * @param map_as_string The map content as a string.
  * @return The number of lines in the map content.
  */
-t_return_value	get_map_amount_of_lines(t_file_data *data, char *map_as_string)
+t_value	get_map_amount_of_lines(t_file_data *data, char *map_as_string)
 {
 	char	*temp;
 
 	if (map_as_string)
 	{
 		temp = map_as_string;
-		data->map_number_of_lines++;
+		data->number_of_lines++;
 		while (*temp)
 		{
 			if (*temp == '\n')
-				data->map_number_of_lines++;
+				data->number_of_lines++;
 			temp++;
 		}
 	}
-	if (data->map_number_of_lines < 3)
+	if (data->number_of_lines < 3)
 		data->return_value = WRONG_MAP_CONTENT;
 	return (data->return_value);
 }
@@ -84,24 +84,24 @@ int	get_max_line_length(char *map_as_string)
  * memory allocation failures by setting the appropriate error code.
  *
  * @param line A pointer to the line buffer.
- * @param file_content_as_string A pointer to the file content buffer.
+ * @param file_to_string A pointer to the file content buffer.
  * @param data A pointer to the t_file_data structure.
  * @return The exit code indicating success or failure.
  */
-t_return_value	initialize_string_buffers(char **line_buffer, t_file_data *data)
+t_value	initialize_string_buffers(char **line_buffer, t_file_data *data)
 {
 	*line_buffer = ft_strdup("");
-	if (data->file_content_as_string)
-		free(data->file_content_as_string);
-	data->file_content_as_string = ft_strdup("");
-	if (!*line_buffer || !data->file_content_as_string)
+	if (data->file_to_string)
+		free(data->file_to_string);
+	data->file_to_string = ft_strdup("");
+	if (!*line_buffer || !data->file_to_string)
 	{
 		data->return_value = MALLOC_FAIL;
 		if (*line_buffer)
 			free(*line_buffer);
-		if (data->file_content_as_string)
-			free(data->file_content_as_string);
-		close(data->file_descriptor);
+		if (data->file_to_string)
+			free(data->file_to_string);
+		close(data->fd);
 	}
 	return (data->return_value);
 }

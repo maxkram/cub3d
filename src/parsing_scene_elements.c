@@ -6,13 +6,13 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:20:11 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/10 02:21:56 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/10 02:45:26 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/main.h"
 
-t_return_value	get_element_texture(char **element_type, char *element_content)
+t_value	get_element_texture(char **element_type, char *element_content)
 {
 	size_t	length;
 
@@ -40,31 +40,31 @@ t_return_value	get_element_texture(char **element_type, char *element_content)
  * @param data A pointer to the t_file_data structure.
  * @return The exit code indicating success or failure.
  */
-static t_return_value	find_and_get_element(char *element, t_file_data *data)
+static t_value	find_and_get_element(char *element, t_file_data *data)
 {
-	t_return_value	return_value;
+	t_value	return_value;
 
 	element = skip_leading_white_spaces(element);
 	return_value = SYMBOL_NOT_FOUND;
 	if (ft_strncmp("NO ", element, 3) == 0)
-		return_value = get_element_texture(&data->north_texture, element + 3);
+		return_value = get_element_texture(&data->north, element + 3);
 	if (ft_strncmp("SO ", element, 3) == 0)
-		return_value = get_element_texture(&data->south_texture, element + 3);
+		return_value = get_element_texture(&data->south, element + 3);
 	if (ft_strncmp("WE ", element, 3) == 0)
-		return_value = get_element_texture(&data->west_texture, element + 3);
+		return_value = get_element_texture(&data->west, element + 3);
 	if (ft_strncmp("EA ", element, 3) == 0)
-		return_value = get_element_texture(&data->east_texture, element + 3);
+		return_value = get_element_texture(&data->est, element + 3);
 	if (ft_strncmp("F ", element, 2) == 0)
-		return_value = get_element_texture(&data->floor_color, element + 2);
+		return_value = get_element_texture(&data->floor, element + 2);
 	if (ft_strncmp("C ", element, 2) == 0)
-		return_value = get_element_texture(&data->ceiling_color, element + 2);
+		return_value = get_element_texture(&data->ceiling, element + 2);
 	if (return_value == MALLOC_FAIL)
 		data->return_value = MALLOC_FAIL;
 	if (return_value == DOUBLE)
 		data->return_value = DOUBLE;
 	if (return_value == SYMBOL_FOUND)
-		data->elements_found++;
-	if (data->elements_found == SYMBOLS_NEEDED)
+		data->symbols_found++;
+	if (data->symbols_found == SYMBOLS_NEEDED)
 		return (ALL_SYMBOLS_FOUND);
 	return (return_value);
 }
@@ -79,7 +79,7 @@ static t_return_value	find_and_get_element(char *element, t_file_data *data)
  * @param map_as_string The string representing the map.
  * @return The exit code indicating success or failure.
  */
-t_return_value
+t_value
 	check_map_does_not_contain_empty_lines(t_file_data *data,
 										char *map_as_string)
 {
@@ -113,15 +113,15 @@ t_return_value
  * @param data A pointer to the t_file_data structure.
  * @return The exit code indicating success or failure.
  */
-t_return_value
+t_value
 	get_scene_elements_and_map(t_file_data *data)
 {
 	char	*element_starts;
 	char	*element_ends;
 
-	element_starts = data->file_content_as_string;
+	element_starts = data->file_to_string;
 	while (element_starts && *element_starts != '\0'
-		&& data->elements_found < SYMBOLS_NEEDED)
+		&& data->symbols_found < SYMBOLS_NEEDED)
 	{
 		element_starts = skip_leading_white_spaces(element_starts);
 		element_ends = ft_strchr(element_starts, '\n');

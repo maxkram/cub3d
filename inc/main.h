@@ -152,13 +152,13 @@ typedef struct s_ray
 
 // Function declarations
 void				initialize_struct(t_file_data *structure_pointer);
-void				print_parse_error(t_return_value error);
-t_return_value		check_file_type(t_file_data *data,
+void				print_parse_error(t_value error);
+t_value		check_file_type(t_file_data *data,
 						const char **path_to_file);
-t_return_value		map_to_string(t_file_data *data,
+t_value		map_to_string(t_file_data *data,
 						const char **path);
 void				clean_up_parsing(t_file_data *data);
-t_return_value		check_scene_demands(t_file_data *data);
+t_value		check_scene_demands(t_file_data *data);
 void				render(t_data *d);
 void				hook_loop(void *data_param);
 void				hook_close(void *data_param);
@@ -181,7 +181,7 @@ void				draw_texture(t_data *d, t_ray *ray, int x);
 void				init_ray_base_values(t_data *d, t_ray *ray, int x);
 void				init_ray_delta(t_ray *ray);
 void				init_ray_side_distance(t_data *d, t_ray *ray);
-t_return_value		get_colors(t_file_data *data);
+t_value		get_colors(t_file_data *data);
 t_bool				ft_is_numerical(char *str);
 void				exit_from_parse(t_file_data *file_data, int return_value);
 void				exit_mlx_parse(t_file_data *file_data,
@@ -190,6 +190,6 @@ void				clean_struct_4_map(t_file_data *data);
 void				move_colors(t_file_data *file_data, t_data *render_data);
 void				exit_bad_argc(void);
 void				check_all_textures(t_data *render_data);
-t_return_value		validate_color_strings(t_file_data *data);
+t_value		validate_color_strings(t_file_data *data);
 
 #endif

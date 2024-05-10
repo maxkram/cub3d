@@ -12,7 +12,7 @@
 
 #include "../inc/main.h"
 
-t_return_value	check_texture(mlx_texture_t *texture)
+t_value	check_texture(mlx_texture_t *texture)
 {
 	if (texture->height != texture->width)
 	{
