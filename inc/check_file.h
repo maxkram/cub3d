@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_file.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/10 02:52:45 by mkramer           #+#    #+#             */
+/*   Updated: 2024/05/10 03:04:03 by mkramer          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CHECK_FILE_H
 # define CHECK_FILE_H
 
@@ -80,19 +92,15 @@ typedef struct s_file_data
 }	t_file_data;
 
 t_value		validate_cub_file(t_file_data *file_data,
-						const char **path_to_file);
+				const char **path_to_file);
 t_value		get_scene_elements_and_map(t_file_data *data);
 t_value		check_scene_demands(t_file_data *data);
-t_value		get_map_amount_of_lines(t_file_data *data,
-						char *map_as_string);
-char				*skip_leading_white_spaces(char *string_beginning);
-t_value		move_string_to_map_array(t_file_data *data,
-						char *map_as_string);
-t_value		initialize_string_buffers(char **line_buffer,
-						t_file_data *data);
-int					get_max_line_length(char *map_as_string);
-t_value		import_and_prepare_map(t_file_data *data,
-						char *map_as_string);
-t_value		check_map_does_not_contain_empty_lines(t_file_data *data,
-						char *map_as_string);
+t_value		get_map_amount_of_lines(t_file_data *data, char *map_as_string);
+char		*remove_blankspaces(char *string_beginning);
+t_value		move_string_to_map_array(t_file_data *data, char *map_as_string);
+t_value		initialize_string_buffers(char **line_buffer, t_file_data *data);
+int			get_max_line_length(char *map_as_string);
+t_value		import_and_prepare_map(t_file_data *data, char *map_as_string);
+t_value		no_empty_lines(t_file_data *data,
+				char *map_as_string);
 #endif

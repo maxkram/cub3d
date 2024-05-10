@@ -6,13 +6,13 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:22:47 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/10 02:41:51 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/10 02:59:50 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/main.h"
 
-char	*skip_leading_white_spaces(char	*string)
+char	*remove_blankspaces(char	*string)
 {
 	while (string && *string != '\0'
 		&& (ft_isspace(*string) || *string == '\t'))

@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:20:11 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/10 02:45:26 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/10 03:07:32 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_value	get_element_texture(char **element_type, char *element_content)
 	size_t	length;
 
 	length = 0;
-	element_content = skip_leading_white_spaces(element_content);
+	element_content = remove_blankspaces(element_content);
 	while (element_content[length]
 		&& element_content[length] != '\n')
 		length++;
@@ -30,21 +30,11 @@ t_value	get_element_texture(char **element_type, char *element_content)
 	return (SYMBOL_FOUND);
 }
 
-/**
- * @brief Find and extract map elements from a string.
- *
- * This function identifies and extracts various map elements from a string,
- * such as textures, floor color, and ceiling color.
- *
- * @param element The string to analyze and extract elements from.
- * @param data A pointer to the t_file_data structure.
- * @return The exit code indicating success or failure.
- */
-static t_value	find_and_get_element(char *element, t_file_data *data)
+t_value	find_and_get_element(char *element, t_file_data *data)
 {
 	t_value	return_value;
 
-	element = skip_leading_white_spaces(element);
+	element = remove_blankspaces(element);
 	return_value = SYMBOL_NOT_FOUND;
 	if (ft_strncmp("NO ", element, 3) == 0)
 		return_value = get_element_texture(&data->north, element + 3);
@@ -69,26 +59,14 @@ static t_value	find_and_get_element(char *element, t_file_data *data)
 	return (return_value);
 }
 
-/**
- * @brief Check if the map contains empty lines.
- *
- * This function checks if the map contains empty lines and sets the appropriate
- * error code in the t_file_data structure if it does.
- *
- * @param data A pointer to the t_file_data structure.
- * @param map_as_string The string representing the map.
- * @return The exit code indicating success or failure.
- */
-t_value
-	check_map_does_not_contain_empty_lines(t_file_data *data,
-										char *map_as_string)
+t_value	no_empty_lines(t_file_data *data, char *map_as_string)
 {
 	t_bool	empty_line;
 
 	empty_line = FALSE;
-	while (*map_as_string != '\0')
+	while (*map_as_string)
 	{
-		if (*map_as_string != ' ' && *map_as_string != '\n')
+		if (!ft_isspace(*map_as_string))
 			empty_line = FALSE;
 		else if (*map_as_string == '\n')
 		{
@@ -123,7 +101,7 @@ t_value
 	while (element_starts && *element_starts != '\0'
 		&& data->symbols_found < SYMBOLS_NEEDED)
 	{
-		element_starts = skip_leading_white_spaces(element_starts);
+		element_starts = remove_blankspaces(element_starts);
 		element_ends = ft_strchr(element_starts, '\n');
 		if (element_starts != element_ends)
 		{
