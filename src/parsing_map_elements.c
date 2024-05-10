@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:19:34 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/09 03:04:59 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/10 02:26:42 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	data_map_to_array(char *line_starts, t_file_data *data,
 t_return_value	create_map_for_data(t_file_data *data,
 	int max_line_length, int current_line, char *line_starts)
 {
-	data->map_as_array[current_line] = (t_map_tile *)ft_calloc(max_line_length
+	data->map_as_array[current_line] = (t_map_symbol *)ft_calloc(max_line_length
 			+ 1, sizeof(int));
 	if (!data->map_as_array[current_line])
 	{
@@ -93,7 +93,7 @@ t_return_value	move_string_to_map_array(t_file_data *data,
 	current_line = 0;
 	line_starts = map_as_string;
 	data->max_map_width = get_max_line_length(map_as_string);
-	data->map_as_array = (t_map_tile **)
+	data->map_as_array = (t_map_symbol **)
 		ft_calloc(data->map_number_of_lines + 1, sizeof(int *));
 	if (!data->map_as_array)
 		return (data->return_value = MALLOC_FAIL);

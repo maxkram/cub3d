@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:20:11 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/10 01:57:57 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/10 02:21:56 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static t_return_value	find_and_get_element(char *element, t_file_data *data)
 		data->return_value = DOUBLE;
 	if (return_value == SYMBOL_FOUND)
 		data->elements_found++;
-	if (data->elements_found == ELEMENTS_NEEDED)
+	if (data->elements_found == SYMBOLS_NEEDED)
 		return (ALL_SYMBOLS_FOUND);
 	return (return_value);
 }
@@ -121,7 +121,7 @@ t_return_value
 
 	element_starts = data->file_content_as_string;
 	while (element_starts && *element_starts != '\0'
-		&& data->elements_found < ELEMENTS_NEEDED)
+		&& data->elements_found < SYMBOLS_NEEDED)
 	{
 		element_starts = skip_leading_white_spaces(element_starts);
 		element_ends = ft_strchr(element_starts, '\n');

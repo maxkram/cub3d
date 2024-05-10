@@ -36,7 +36,7 @@
 // Include user headers
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "../libft/libft.h"
-# include "file_validation.h"
+# include "check_file.h"
 
 // Type definitions
 typedef enum e_program_phase

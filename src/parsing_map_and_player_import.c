@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:19:07 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/10 01:57:28 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/10 02:23:15 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_return_value	import_and_prepare_map(t_file_data *data,
 		return (data->return_value);
 	}
 	if ((get_map_amount_of_lines(data, map_as_string) == WRONG_MAP_CONTENT)
-		|| (get_player_position(data, map_as_string, SPAWN_DIRECTION) != OK)
+		|| (get_player_position(data, map_as_string, BIRTH_DIRECT) != OK)
 		|| (check_symbols_in_map(data, map_as_string) == WRONG_DATA)
 		|| (check_map_does_not_contain_empty_lines(data,
 				map_as_string) == MAP_EMPTY_LINE))

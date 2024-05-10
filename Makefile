@@ -14,7 +14,7 @@ FOLDER_LIST		=	$(H_FOLDER) $(C_FOLDER) $(OBJ_FOLDER) \
 					$(LIBFT_FOLDER) $(MINILIBX_FOLDER)
 
 H_FILES			=	main.h \
-					file_validation.h
+					check_file.h
 
 C_FILES			=	main.c \
 					utils.c \
