@@ -6,38 +6,28 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:20:11 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/07 05:29:25 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/10 01:57:57 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/main.h"
 
-/**
- * @brief Get the texture element content from the provided string.
- *
- * This function extracts the content of a texture element from a string.
- *
- * @param element_type A pointer to store the extracted element content.
- * @param element_content The string containing the element content.
- * @return A return code indicating success or failure.
- */
-static t_return_value
-	get_element_texture(char **element_type, char *element_content)
+t_return_value	get_element_texture(char **element_type, char *element_content)
 {
-	size_t	element_length;
+	size_t	length;
 
-	element_length = 0;
+	length = 0;
 	element_content = skip_leading_white_spaces(element_content);
-	while (element_content[element_length] != '\n'
-		&& element_content[element_length] != '\0')
-		element_length++;
-	if (*element_type != NULL)
-		return (DUPLICATE);
-	*element_type = (char *)calloc(element_length + 1, sizeof(char));
-	if (*element_type == NULL)
+	while (element_content[length]
+		&& element_content[length] != '\n')
+		length++;
+	if (*element_type)
+		return (DOUBLE);
+	*element_type = (char *)calloc(length + 1, sizeof(char));
+	if (!*element_type)
 		return (MALLOC_FAIL);
-	ft_strlcpy(*element_type, element_content, element_length + 1);
-	return (ELEMENT_FOUND);
+	ft_strlcpy(*element_type, element_content, length + 1);
+	return (SYMBOL_FOUND);
 }
 
 /**
@@ -50,13 +40,12 @@ static t_return_value
  * @param data A pointer to the t_file_data structure.
  * @return The exit code indicating success or failure.
  */
-static t_return_value
-	find_and_get_element(char *element, t_file_data *data)
+static t_return_value	find_and_get_element(char *element, t_file_data *data)
 {
 	t_return_value	return_value;
 
 	element = skip_leading_white_spaces(element);
-	return_value = ELEMENT_NOT_FOUND;
+	return_value = SYMBOL_NOT_FOUND;
 	if (ft_strncmp("NO ", element, 3) == 0)
 		return_value = get_element_texture(&data->north_texture, element + 3);
 	if (ft_strncmp("SO ", element, 3) == 0)
@@ -71,12 +60,12 @@ static t_return_value
 		return_value = get_element_texture(&data->ceiling_color, element + 2);
 	if (return_value == MALLOC_FAIL)
 		data->return_value = MALLOC_FAIL;
-	if (return_value == DUPLICATE)
-		data->return_value = DUPLICATE;
-	if (return_value == ELEMENT_FOUND)
+	if (return_value == DOUBLE)
+		data->return_value = DOUBLE;
+	if (return_value == SYMBOL_FOUND)
 		data->elements_found++;
 	if (data->elements_found == ELEMENTS_NEEDED)
-		return (ALL_ELEMENTS_FOUND);
+		return (ALL_SYMBOLS_FOUND);
 	return (return_value);
 }
 
@@ -105,7 +94,7 @@ t_return_value
 		{
 			if (empty_line)
 			{
-				data->return_value = MAP_CONTAINS_EMPTY_LINE;
+				data->return_value = MAP_EMPTY_LINE;
 				return (data->return_value);
 			}
 			empty_line = TRUE;

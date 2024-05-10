@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:19:07 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/09 02:57:11 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/10 01:57:28 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_return_value	get_player_position(t_file_data *data,
 		}
 		data->current_position++;
 	}
-	data->return_value = PLAYER_DATA_INCORRECT_OR_MISSING;
+	data->return_value = WRONG_PLAYER_DATA;
 	return (data->return_value);
 }
 
@@ -57,7 +57,7 @@ t_return_value	check_symbols_in_map(t_file_data *data,
 		if (*map_as_string != ' ' && *map_as_string != '0'
 			&& *map_as_string != '1' && *map_as_string != '\n')
 		{
-			data->return_value = GARBAGE_DATA;
+			data->return_value = WRONG_DATA;
 			return (data->return_value);
 		}
 		map_as_string++;
@@ -71,16 +71,16 @@ t_return_value	import_and_prepare_map(t_file_data *data,
 	if (data->elements_found != 6)
 	{
 		if (data->elements_found != 0)
-			data->return_value = MISSING_ELEMENTS;
+			data->return_value = MISSING_SYMBOL;
 		else
-			data->return_value = NO_ELEMENT_FOUND;
+			data->return_value = NO_SYMBOLS;
 		return (data->return_value);
 	}
-	if ((get_map_amount_of_lines(data, map_as_string) == MAP_CONTENT_NOT_VALID)
+	if ((get_map_amount_of_lines(data, map_as_string) == WRONG_MAP_CONTENT)
 		|| (get_player_position(data, map_as_string, SPAWN_DIRECTION) != OK)
-		|| (check_symbols_in_map(data, map_as_string) == GARBAGE_DATA)
+		|| (check_symbols_in_map(data, map_as_string) == WRONG_DATA)
 		|| (check_map_does_not_contain_empty_lines(data,
-				map_as_string) == MAP_CONTAINS_EMPTY_LINE))
+				map_as_string) == MAP_EMPTY_LINE))
 		return (data->return_value);
 	move_string_to_map_array(data, map_as_string);
 	return (data->return_value);
