@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 02:53:52 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/13 00:11:20 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/13 02:09:39 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,10 +142,9 @@ unsigned int		get_texture_pixel(mlx_texture_t *texture, unsigned int x,
 						unsigned int y);
 void				init_player_dir_plane(t_data *d, int player_angle_deg,
 						int fov);
-unsigned int		convert_abgr_to_rgba(unsigned int agbr);
 void				put_pixel(mlx_image_t *image, uint32_t x, uint32_t y,
 						uint32_t color);
-void				render_ceiling_floor(t_data *d);
+void				floor_ceiling_render(t_data *d);
 void				update_player_location(t_data *d);
 void				move_player_direction(t_file_data *file_data,
 						t_data *render_data);

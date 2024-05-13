@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:22:29 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/12 20:58:50 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/13 02:09:43 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,6 @@ void	draw_texture(t_data *d, t_ray *ray, int x)
 
 void	render(t_data *d)
 {
-	render_ceiling_floor(d);
+	floor_ceiling_render(d);
 	cast_rays(d);
 }
