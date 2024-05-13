@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 02:52:45 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/12 22:14:06 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/13 02:53:53 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ typedef struct s_color
 
 # define SYMBOLS_NEEDED 6
 # define BIRTH_DIRECT "NSEW"
-// # define N 1
-// # define S 2
-// # define W 3
-// # define E 4
 
 typedef enum e_map_symbol
 {

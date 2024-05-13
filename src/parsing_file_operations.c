@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:10:29 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/12 22:14:11 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/13 02:56:46 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ t_value	check_file_type(t_file_data *data, const char **path_to_file)
 t_value	check_scene_demands(t_file_data *data)
 {
 	if ((get_symbols_and_map(data) != OK)
-		|| (validate_color_strings(data) != OK)
+		|| (check_color_strings(data) != OK)
 		|| (get_colors(data) != OK))
 		return (data->return_value);
 	return (data->return_value);
