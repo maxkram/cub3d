@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 02:53:52 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/13 02:09:39 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/13 02:41:07 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ void				clean_and_exit(t_data *d, int exit_status);
 double				deg_to_rad(double degrees);
 unsigned int		get_texture_pixel(mlx_texture_t *texture, unsigned int x,
 						unsigned int y);
-void				init_player_dir_plane(t_data *d, int player_angle_deg,
+void				start_player_plane(t_data *d, int player_angle_deg,
 						int fov);
 void				put_pixel(mlx_image_t *image, uint32_t x, uint32_t y,
 						uint32_t color);

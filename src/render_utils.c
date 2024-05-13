@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:22:12 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/13 02:09:36 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/13 02:38:00 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 uint32_t	abgr_to_rgba(uint32_t agbr)
 {
-	return((agbr & 0xFF) << 24) | ((agbr & 0xFF00) << 8)
-		| ((agbr & 0xFF0000) >> 8) | ((agbr & 0xFF000000) >> 24);
+	return (((agbr & 0xFF) << 24) | ((agbr & 0xFF00) << 8)
+		| ((agbr & 0xFF0000) >> 8) | ((agbr & 0xFF000000) >> 24));
 }
 
 uint32_t	get_texture_pixel(mlx_texture_t *texture, uint32_t x, uint32_t y)

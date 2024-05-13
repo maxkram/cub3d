@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:10:30 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/10 02:42:31 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/13 02:41:10 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	move_player_direction(t_file_data *file_data, t_data *render_data)
 		degrees = 180;
 	if (direction == 'W')
 		degrees = 270;
-	init_player_dir_plane(render_data, degrees, PLAYER_FOV);
+	start_player_plane(render_data, degrees, PLAYER_FOV);
 }
 
 uint32_t	move_colors_to_rgba(uint32_t r, uint32_t g, uint32_t b, uint32_t a)
