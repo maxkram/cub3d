@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:20:45 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/12 22:02:54 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/12 22:26:30 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,31 +50,16 @@ int	max_length(char *map)
 	return (max_len);
 }
 
-/**
- * @brief Initialize string buffers for file content and line.
- *
- * This function initializes the string buffers for storing the file's content
- * and each line of the file. It allocates memory for these buffers and handles
- * memory allocation failures by setting the appropriate error code.
- *
- * @param line A pointer to the line buffer.
- * @param file_to_string A pointer to the file content buffer.
- * @param data A pointer to the t_file_data structure.
- * @return The exit code indicating success or failure.
- */
-t_value	initialize_string_buffers(char **line_buffer, t_file_data *data)
+t_value	create_buffers(char **line_buffer, t_file_data *data)
 {
 	*line_buffer = ft_strdup("");
-	if (data->file_to_string)
-		free(data->file_to_string);
+	free(data->file_to_string);
 	data->file_to_string = ft_strdup("");
 	if (!*line_buffer || !data->file_to_string)
 	{
 		data->return_value = MALLOC_FAIL;
-		if (*line_buffer)
-			free(*line_buffer);
-		if (data->file_to_string)
-			free(data->file_to_string);
+		free(*line_buffer);
+		free(data->file_to_string);
 		close(data->fd);
 	}
 	return (data->return_value);

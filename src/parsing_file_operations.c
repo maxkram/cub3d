@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:10:29 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/12 21:15:45 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/12 22:14:11 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_value	map_to_string(t_file_data *data, const char **path)
 	char	*line_buffer;
 
 	if ((open_and_check_file(data, path) == FILE_OPEN_FAIL)
-		|| (initialize_string_buffers(&line_buffer, data) == MALLOC_FAIL))
+		|| (create_buffers(&line_buffer, data) == MALLOC_FAIL))
 		return (data->return_value);
 	while (line_buffer)
 	{
