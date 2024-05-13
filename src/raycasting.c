@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:21:41 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/12 23:42:40 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/13 00:11:24 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	cast_rays(t_data *d)
 	while (x < WINDOW_WIDTH)
 	{
 		start_ray_base(d, &ray, x);
-		init_ray_delta(&ray);
-		init_ray_side_distance(d, &ray);
+		start_ray_delta(&ray);
+		start_ray_side_distance(d, &ray);
 		perform_dda(d, &ray);
 		calculate_wall_line_height(&ray);
 		calculate_wall_start_end_pixels(&ray);

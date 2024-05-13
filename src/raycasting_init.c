@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:21:02 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/12 23:57:36 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/13 00:11:22 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ void	start_ray_base(t_data *d, t_ray *ray, int x)
 		exit(1);
 }
 
-void	init_ray_delta(t_ray *ray)
+void	start_ray_delta(t_ray *ray)
 {
-	ray->delta_dist.x = 123456789;
+	ray->delta_dist.x = BIG_NUMBER;
 	if (ray->dir.x != 0)
 		ray->delta_dist.x = fabs(1 / ray->dir.x);
-	ray->delta_dist.y = 123456789;
+	ray->delta_dist.y = BIG_NUMBER;
 	if (ray->dir.y != 0)
 		ray->delta_dist.y = fabs(1 / ray->dir.y);
 }
 
-void	init_ray_side_distance(t_data *d, t_ray *ray)
+void	start_ray_side_distance(t_data *d, t_ray *ray)
 {
 	if (ray->dir.x < 0)
 	{

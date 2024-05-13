@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 02:53:52 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/12 23:42:11 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/13 00:11:20 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define COLOR_PINK 0xE97FC2FF
 # define COLOR_BLUE 0x35CFE4FF
 # define COLOR_GRAY 0x5F574FFF
+# define BIG_NUMBER 99999999
 
 # include <fcntl.h>
 # include <limits.h>
@@ -151,8 +152,8 @@ void				move_player_direction(t_file_data *file_data,
 void				cast_rays(t_data *d);
 void				draw_texture(t_data *d, t_ray *ray, int x);
 void				start_ray_base(t_data *d, t_ray *ray, int x);
-void				init_ray_delta(t_ray *ray);
-void				init_ray_side_distance(t_data *d, t_ray *ray);
+void				start_ray_delta(t_ray *ray);
+void				start_ray_side_distance(t_data *d, t_ray *ray);
 t_value				get_colors(t_file_data *data);
 t_bool				ft_is_numerical(char *str);
 void				exit_from_parse(t_file_data *file_data, int return_value);
