@@ -6,13 +6,13 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:21:41 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/13 00:11:24 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/13 01:45:39 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/main.h"
 
-static void	perform_dda(t_data *d, t_ray *ray)
+void	digital_differential_analyzer(t_data *d, t_ray *ray)
 {
 	ray->hit = 0;
 	while (!ray->hit)
@@ -38,7 +38,7 @@ static void	perform_dda(t_data *d, t_ray *ray)
 	}
 }
 
-static void	calculate_wall_line_height(t_ray *ray)
+static void	wall_height_calculate(t_ray *ray)
 {
 	if (ray->side == 0)
 		ray->normal_wall_distance = ray->side_dist.x - ray->delta_dist.x;
@@ -47,7 +47,7 @@ static void	calculate_wall_line_height(t_ray *ray)
 	ray->line_height = (int)(WINDOW_HEIGHT / ray->normal_wall_distance);
 }
 
-static void	calculate_wall_start_end_pixels(t_ray *ray)
+static void	wall_first_last_pixel_calculate(t_ray *ray)
 {
 	ray->draw_start = -ray->line_height / 2 + WINDOW_HEIGHT / 2;
 	if (ray->draw_start < 0)
@@ -57,7 +57,7 @@ static void	calculate_wall_start_end_pixels(t_ray *ray)
 		ray->draw_end = WINDOW_HEIGHT - 1;
 }
 
-static void	calculate_wall_hit_decimal(t_data *d, t_ray *ray)
+static void	wall_hit_position_calculate(t_data *d, t_ray *ray)
 {
 	if (ray->side == 0)
 		ray->wall_hit_dec = d->player.pos.y + ray->normal_wall_distance
@@ -79,10 +79,10 @@ void	cast_rays(t_data *d)
 		start_ray_base(d, &ray, x);
 		start_ray_delta(&ray);
 		start_ray_side_distance(d, &ray);
-		perform_dda(d, &ray);
-		calculate_wall_line_height(&ray);
-		calculate_wall_start_end_pixels(&ray);
-		calculate_wall_hit_decimal(d, &ray);
+		digital_differential_analyzer(d, &ray);
+		wall_height_calculate(&ray);
+		wall_first_last_pixel_calculate(&ray);
+		wall_hit_position_calculate(d, &ray);
 		draw_texture(d, &ray, x);
 		x++;
 	}
