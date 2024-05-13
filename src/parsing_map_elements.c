@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:19:34 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/10 02:50:10 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/12 22:00:19 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ t_value	move_string_to_map_array(t_file_data *data,
 
 	current_line = 0;
 	line_starts = map_as_string;
-	data->max_width = get_max_line_length(map_as_string);
+	data->max_width = max_length(map_as_string);
 	data->map_to_array = (t_map_symbol **)
 		ft_calloc(data->number_of_lines + 1, sizeof(int *));
 	if (!data->map_to_array)

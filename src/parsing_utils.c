@@ -6,74 +6,48 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:20:45 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/10 02:46:57 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/12 22:02:54 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/main.h"
 
-/**
- * @brief Get the number of lines in the map content.
- *
- * This function calculates the number of lines in the map content by counting
- * the newline characters. It also validates that the map contains a minimum of
- * three lines.
- *
- * @param data A pointer to the t_file_data structure.
- * @param map_as_string The map content as a string.
- * @return The number of lines in the map content.
- */
-t_value	get_map_amount_of_lines(t_file_data *data, char *map_as_string)
+t_value	count_the_lines(t_file_data *data, char *map)
 {
-	char	*temp;
-
-	if (map_as_string)
+	data->number_of_lines++;
+	while (*map)
 	{
-		temp = map_as_string;
-		data->number_of_lines++;
-		while (*temp)
-		{
-			if (*temp == '\n')
-				data->number_of_lines++;
-			temp++;
-		}
+		if (*map == '\n')
+			data->number_of_lines++;
+		map++;
 	}
 	if (data->number_of_lines < 3)
 		data->return_value = WRONG_MAP_CONTENT;
 	return (data->return_value);
 }
 
-/**
- * @brief Get the maximum line length in the map content.
- *
- * This function calculates the maximum line length in the map content by
- * iterating through the lines.
- *
- * @param map_as_string The map content as a string.
- * @return The maximum line length.
- */
-int	get_max_line_length(char *map_as_string)
+int	max_length(char *map)
 {
-	int		max_line_length;
-	int		line_length;
-	char	*line_starts;
-	char	*line_ends;
+	int		max_len;
+	int		len;
+	char	*start;
+	char	*end;
 
-	max_line_length = 0;
-	line_starts = map_as_string;
-	while (*line_starts != '\0')
+	max_len = 0;
+	start = map;
+	while (*start)
 	{
-		line_ends = ft_strchr(line_starts, '\n');
-		if (line_ends == NULL)
-			line_ends = line_starts + ft_strlen(line_starts);
-		line_length = line_ends - line_starts;
-		if (line_length > max_line_length)
-			max_line_length = line_length;
-		line_starts = line_ends;
-		if (line_starts && *line_starts != '\0')
-			line_starts++;
+		end = ft_strchr(start, '\n');
+		if (!end)
+			end = start + ft_strlen(start);
+		len = end - start;
+		if (len > max_len)
+			max_len = len;
+		start = end;
+		if (start && *start)
+			start++;
 	}
-	return (max_line_length);
+	return (max_len);
 }
 
 /**

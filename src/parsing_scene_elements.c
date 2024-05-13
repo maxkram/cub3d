@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:20:11 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/12 21:15:52 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/12 21:17:53 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,7 @@ t_value	no_empty_lines(t_file_data *data, char *map_as_string)
 	return (data->return_value);
 }
 
-t_value
-	get_symbols_and_map(t_file_data *data)
+t_value	get_symbols_and_map(t_file_data *data)
 {
 	char	*symbol_starts;
 	char	*symbol_ends;
