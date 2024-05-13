@@ -18,21 +18,21 @@ H_FILES			=	main.h \
 
 C_FILES			=	main.c \
 					utils.c \
-					parsing_file_operations.c \
-					parsing_map_elements.c \
-					parsing_scene_elements.c \
+					parsing_files.c \
+					parsing_map.c \
+					parsing_symbols.c \
 					render.c \
 					render_utils.c \
 					mlx_hooks.c \
-					raycasting_movement.c \
-					migration.c \
+					raycasting_move.c \
+					migrate.c \
 					raycasting.c \
 					raycasting_init.c \
 					parsing_colors.c \
 					parsing_utils.c \
-					parsing_map_and_player_import.c \
+					parsing_player.c \
 					exit.c \
-					check_all_textures.c \
+					check_textures.c \
 					validate_colors.c
 
 H_PATHS			=	$(addprefix $(H_FOLDER)/, $(H_FILES))
@@ -40,9 +40,7 @@ C_PATHS			=	$(addprefix $(C_FOLDER)/, $(C_FILES))
 OBJ_PATHS		=	$(addprefix $(OBJ_FOLDER)/, \
 					$(patsubst %.c, %.o, $(C_FILES)))
 
-C_FLAGS_OBJ		=	-Wall -Wextra -Werror \
-					# -Wpedantic -Wunreachable-code -Wtype-limits \
-					# -Ofast
+C_FLAGS_OBJ		=	-Wall -Wextra -Werror
 
 C_FLAGS_MLX42	=	-framework Cocoa -framework OpenGL -framework IOKit \
 					-lglfw -L $(GLFW)/lib/ -framework Cocoa -framework OpenGL -framework IOKit
