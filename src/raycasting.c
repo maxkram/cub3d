@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:21:41 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/01 00:58:13 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/12 23:42:40 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	cast_rays(t_data *d)
 	x = 0;
 	while (x < WINDOW_WIDTH)
 	{
-		init_ray_base_values(d, &ray, x);
+		start_ray_base(d, &ray, x);
 		init_ray_delta(&ray);
 		init_ray_side_distance(d, &ray);
 		perform_dda(d, &ray);

@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:22:47 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/12 20:56:34 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/12 23:40:44 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*remove_blankspaces(char	*string)
 	return (string);
 }
 
-void	initialize_struct(t_file_data *structure_pointer)
+void	create_struct(t_file_data *structure_pointer)
 {
 	ft_bzero(structure_pointer, sizeof(*structure_pointer));
 }

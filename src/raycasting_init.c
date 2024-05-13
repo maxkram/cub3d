@@ -6,22 +6,21 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:21:02 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/01 00:59:25 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/12 23:57:36 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/main.h"
 
-void	init_ray_base_values(t_data *d, t_ray *ray, int x)
+void	start_ray_base(t_data *d, t_ray *ray, int x)
 {
 	ray->cam_x = 2 * x / (double)WINDOW_WIDTH - 1;
 	ray->dir.x = d->player.dir.x + d->player.plane.x * ray->cam_x;
 	ray->dir.y = d->player.dir.y + d->player.plane.y * ray->cam_x;
 	ray->map.x = (int)d->player.pos.x;
-	if (ray->map.x < 0 || ray->map.x >= d->map.width)
-		exit(1);
 	ray->map.y = (int)d->player.pos.y;
-	if (ray->map.y < 0 || ray->map.y >= d->map.height)
+	if (ray->map.x < 0 || ray->map.x >= d->map.width
+		|| ray->map.y < 0 || ray->map.y >= d->map.height)
 		exit(1);
 }
 

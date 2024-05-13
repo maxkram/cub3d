@@ -6,28 +6,20 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 02:53:52 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/10 02:54:40 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/12 23:42:11 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAIN_H
 # define MAIN_H
 
-// Preprocessor definitions
 # define WINDOW_WIDTH 720
 # define WINDOW_HEIGHT 480
 # define PLAYER_FOV 65
-// PLAYER_MOVE_SPEED in map squares
 # define PLAYER_MOVE_SPEED 0.025
-// PLAYER_ROTATE_SPEED in radians
 # define PLAYER_ROTATE_SPEED 0.03
 # define TEXTURE_SIZE_MIN 1
 # define TEXTURE_SIZE_MAX 64
-// # define EXIT_SUCCESS 0
-// # define EXIT_FAILURE 1
-// # define HUGE_NUMBER 123456789
-// # define NEGATIVE -1
-// # define POSITIVE 1
 # define COLOR_BLACK 0x000000FF
 # define COLOR_WHITE 0xFFFFFFFF
 # define COLOR_GREEN 0x90FD90FF
@@ -36,7 +28,6 @@
 # define COLOR_BLUE 0x35CFE4FF
 # define COLOR_GRAY 0x5F574FFF
 
-// Include system headers
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
@@ -45,12 +36,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-// Include user headers
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "../libft/libft.h"
 # include "check_file.h"
 
-// Type definitions
 typedef enum e_program_phase
 {
 	PHASE_PARSING,
@@ -63,12 +52,6 @@ typedef struct s_dvec
 	double			y;
 }					t_dvec;
 
-/**
- * @brief Contains player position information
- * @param pos position vector
- * @param dir direction vector
- * @param plane camera plane vector
- */
 typedef struct s_player
 {
 	t_dvec			pos;
@@ -76,9 +59,6 @@ typedef struct s_player
 	t_dvec			plane;
 }					t_player;
 
-// color is stored in rgba format encoded into an int
-// int get_rgba(int r, int g, int b, int a) can be used for encoding
-// int get_r(int rgba) for decoding a single channel, r in this case
 typedef struct s_color_data
 {
 	int				floor;
@@ -123,26 +103,6 @@ typedef struct s_line
 	unsigned int	color;
 }					t_line;
 
-/**
- * @brief Represents a single cast ray
- * @param dir ray direction vector
- * @param cam_x x coordinate on the camera plane for current window x
- * coordinate
- * @param map current map square
- * @param side_dist ray length from current position to next x or y map side
- * @param delta_dist ray length from one x or y map side to the next x or y
- * @param normal_wall_distance length of the ray from the camera plane
- * to the wall point hit
- * @param step direction the ray steps in x and y direction
- * @param hit flag for the ray hitting a wall
- * @param side which side of the wall did the ray hit North/South/X
- * or East/West/Y (x hit or y hit)
- * @param line_height height of the line to draw on screen to represent the ray
- * @param draw_start y coordinate from where to start drawing
- * @param draw_end y coordinate where to stop drawing (inclusive)
- * @param wall_hit_dec the decimal value of the point where the ray
- * hit the wall
- */
 typedef struct s_ray
 {
 	t_dvec			dir;
@@ -163,7 +123,7 @@ typedef struct s_ray
 }					t_ray;
 
 // Function declarations
-void				initialize_struct(t_file_data *structure_pointer);
+void				create_struct(t_file_data *structure_pointer);
 void				print_parse_error(t_value error);
 t_value				check_file_type(t_file_data *data,
 						const char **path_to_file);
@@ -190,7 +150,7 @@ void				move_player_direction(t_file_data *file_data,
 						t_data *render_data);
 void				cast_rays(t_data *d);
 void				draw_texture(t_data *d, t_ray *ray, int x);
-void				init_ray_base_values(t_data *d, t_ray *ray, int x);
+void				start_ray_base(t_data *d, t_ray *ray, int x);
 void				init_ray_delta(t_ray *ray);
 void				init_ray_side_distance(t_data *d, t_ray *ray);
 t_value				get_colors(t_file_data *data);

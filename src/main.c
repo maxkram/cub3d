@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:13:53 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/10 02:50:03 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/12 23:40:39 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_value	check_cub_file(
 
 void	parse(t_file_data *file_data, char **argv)
 {
-	initialize_struct(file_data);
+	create_struct(file_data);
 	file_data->return_value = OK;
 	check_cub_file(file_data, (const char **)argv);
 	if (file_data->return_value != OK)
