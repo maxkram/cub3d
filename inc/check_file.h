@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 02:52:45 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/10 03:04:03 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/12 21:15:42 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ typedef struct s_file_data
 
 t_value		validate_cub_file(t_file_data *file_data,
 				const char **path_to_file);
-t_value		get_scene_elements_and_map(t_file_data *data);
+t_value		get_symbols_and_map(t_file_data *data);
 t_value		check_scene_demands(t_file_data *data);
 t_value		get_map_amount_of_lines(t_file_data *data, char *map_as_string);
 char		*remove_blankspaces(char *string_beginning);

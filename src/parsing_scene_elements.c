@@ -6,13 +6,13 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:20:11 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/12 20:38:34 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/12 21:15:52 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/main.h"
 
-t_value	get_element_texture(char **symbol_type, char *symbol_content)
+t_value	get_symbol_texture(char **symbol_type, char *symbol_content)
 {
 	size_t	length;
 
@@ -23,7 +23,7 @@ t_value	get_element_texture(char **symbol_type, char *symbol_content)
 		length++;
 	if (*symbol_type)
 		return (DOUBLE);
-	*symbol_type = (char *)calloc(length + 1, sizeof(char));
+	*symbol_type = (char *)ft_calloc(length + 1, sizeof(char));
 	if (!*symbol_type)
 		return (MALLOC_FAIL);
 	ft_strlcpy(*symbol_type, symbol_content, length + 1);
@@ -37,17 +37,17 @@ t_value	find_and_get_element(char *symbol, t_file_data *data)
 	symbol = remove_blankspaces(symbol);
 	return_value = SYMBOL_NOT_FOUND;
 	if (!ft_strncmp("NO ", symbol, 3))
-		return_value = get_element_texture(&data->north, symbol + 3);
+		return_value = get_symbol_texture(&data->north, symbol + 3);
 	if (!ft_strncmp("SO ", symbol, 3))
-		return_value = get_element_texture(&data->south, symbol + 3);
+		return_value = get_symbol_texture(&data->south, symbol + 3);
 	if (!ft_strncmp("WE ", symbol, 3))
-		return_value = get_element_texture(&data->west, symbol + 3);
+		return_value = get_symbol_texture(&data->west, symbol + 3);
 	if (!ft_strncmp("EA ", symbol, 3))
-		return_value = get_element_texture(&data->est, symbol + 3);
+		return_value = get_symbol_texture(&data->est, symbol + 3);
 	if (!ft_strncmp("F ", symbol, 2))
-		return_value = get_element_texture(&data->floor, symbol + 2);
+		return_value = get_symbol_texture(&data->floor, symbol + 2);
 	if (!ft_strncmp("C ", symbol, 2))
-		return_value = get_element_texture(&data->ceiling, symbol + 2);
+		return_value = get_symbol_texture(&data->ceiling, symbol + 2);
 	if (return_value == MALLOC_FAIL)
 		data->return_value = MALLOC_FAIL;
 	if (return_value == DOUBLE)
@@ -79,23 +79,14 @@ t_value	no_empty_lines(t_file_data *data, char *map_as_string)
 	return (data->return_value);
 }
 
-/**
- * @brief Get map elements from the input scene description.
- *
- * This function parses the input scene description and extracts map elements
- * such as textures, floor color, ceiling color, and the map itself.
- *
- * @param data A pointer to the t_file_data structure.
- * @return The exit code indicating success or failure.
- */
 t_value
-	get_scene_elements_and_map(t_file_data *data)
+	get_symbols_and_map(t_file_data *data)
 {
 	char	*symbol_starts;
 	char	*symbol_ends;
 
 	symbol_starts = data->file_to_string;
-	while (symbol_starts && *symbol_starts != '\0'
+	while (symbol_starts && *symbol_starts
 		&& data->symbols_found < SYMBOLS_NEEDED)
 	{
 		symbol_starts = remove_blankspaces(symbol_starts);
@@ -107,11 +98,10 @@ t_value
 				break ;
 		}
 		symbol_starts = symbol_ends;
-		if (symbol_starts && *symbol_starts != '\0')
+		if (symbol_starts && *symbol_starts)
 			symbol_starts++;
 	}
-	while (symbol_starts
-		&& *symbol_starts != '\0' && *symbol_starts == '\n')
+	while (symbol_starts && *symbol_starts == '\n')
 		symbol_starts++;
 	if (data->return_value == OK)
 		import_and_prepare_map(data, symbol_starts);
