@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 02:53:52 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/13 02:56:49 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/13 02:59:11 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,6 @@
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "../libft/libft.h"
 # include "check_file.h"
-
-typedef enum e_program_phase
-{
-	PHASE_PARSING,
-	PHASE_RENDERING
-}	t_program_phase;
 
 typedef struct s_dvec
 {
@@ -87,13 +81,6 @@ typedef struct s_point
 	int				x;
 	int				y;
 }	t_point;
-
-typedef struct s_line
-{
-	t_point			start;
-	t_point			end;
-	unsigned int	color;
-}	t_line;
 
 typedef struct s_ray
 {
