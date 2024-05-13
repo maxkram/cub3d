@@ -6,44 +6,18 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:22:12 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/07 02:49:27 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/13 01:55:34 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/main.h"
 
-/**
- * @brief Takes in an unsigned int with agbr color values,
- * and outputs it with rgba color values.
- * 
- * @param agbr 4 byte unsigned int, with 1 byte per color: AlphaGreenBlueRed
- * @return unsigned int - 4 byte unsigned int, with 1 byte per color:
- * RedGreenBlueAlpha
- */
 unsigned int	convert_abgr_to_rgba(unsigned int agbr)
 {
-	unsigned int	rgba;
-	unsigned int	r;
-	unsigned int	g;
-	unsigned int	b;
-	unsigned int	a;
-
-	r = (agbr & 0x000000FF) << 24;
-	g = (agbr & 0x0000FF00) << 8;
-	b = (agbr & 0x00FF0000) >> 8;
-	a = (agbr & 0xFF000000) >> 24;
-	rgba = a | r | g | b;
-	return (rgba);
+	return((agbr & 0xFF) << 24) | ((agbr & 0xFF00) << 8)
+		| ((agbr & 0xFF0000) >> 8) | ((agbr & 0xFF000000) >> 24);
 }
 
-/**
- * @brief Get the texture's pixel color.
- * 
- * @param texture where to fetch the pixel from
- * @param x horizontal index of the wanted pixel
- * @param y vertical index of the wanted pixel
- * @return unsigned int - rgba encoded pixel color data
- */
 unsigned int
 	get_texture_pixel(mlx_texture_t *texture, unsigned int x, unsigned int y)
 {
