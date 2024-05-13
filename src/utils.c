@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:22:47 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/10 02:59:50 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/12 20:56:34 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,37 +28,37 @@ void	initialize_struct(t_file_data *structure_pointer)
 void	print_parse_error_2(t_value error)
 {
 	if (error == NO_SYMBOLS)
-		printf("Error\nWrong format of cub file\n");
+		printf("\033[1;31mError\nWrong format of cub file\033[0m\n");
 	if (error == WRONG_PLAYER_DATA)
-		printf("Error\nWrong player data\n");
+		printf("\033[1;31mError\nWrong player data\033[0m\n");
 	if (error == WRONG_DATA)
-		printf("Error\nGarbage map data\n");
+		printf("\033[1;31mError\nGarbage map data\033[0m\n");
 	if (error == MAP_EMPTY_LINE)
-		printf("Error\nEmpty line in the map\n");
+		printf("\033[1;31mError\nEmpty line in the map\033[0m\n");
 	if (error == OPEN_WALL)
-		printf("Error\nOpen wall\n");
+		printf("\033[1;31mError\nOpen wall\033[0m\n");
 	if (error == WRONG_COLORS)
-		printf("Error\nWrong RGB\n");
+		printf("\033[1;31mError\nWrong RGB\033[0m\n");
 	if (error == DOUBLE)
-		printf("Error\nDuplicates\n");
+		printf("\033[1;31mError\nDuplicates\033[0m\n");
 }
 
 void	print_parse_error(t_value error)
 {
 	if (error == MALLOC_FAIL)
-		printf("Error\nMemory issues\n");
+		printf("\033[1;31mError\nMemory issues\033[0m\n");
 	if (error == NEED_CUB)
-		printf("Error\nNeed a .cub file\n");
+		printf("\033[1;31mError\nNeed a .cub file\033[0m\n");
 	if (error == EMPTY_FILE)
-		printf("Error\nEmpty file\n");
+		printf("\033[1;31mError\nEmpty file\033[0m\n");
 	if (error == FILE_OPEN_FAIL)
-		printf("Error\nCannot open the file\n");
+		printf("\033[1;31mError\nCannot open the file\033[0m\n");
 	if (error == WRONG_MAP_CONTENT)
-		printf("Error\nWrong content\n");
+		printf("\033[1;31mError\nWrong content\033[0m\n");
 	if (error == WRONG_ARGUMENT)
-		printf("Error\nWrong arguments\n");
+		printf("\033[1;31mError\nWrong arguments\033[0m\n");
 	if (error == MISSING_SYMBOL)
-		printf("Error\nMissed the map's elements\n");
+		printf("\033[1;31mError\nMissed the map's elements\033[0m\n");
 	else
 		print_parse_error_2(error);
 }

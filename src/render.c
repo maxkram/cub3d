@@ -6,7 +6,7 @@
 /*   By: mkramer <mkramer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 01:22:29 by mkramer           #+#    #+#             */
-/*   Updated: 2024/05/05 01:23:25 by mkramer          ###   ########.fr       */
+/*   Updated: 2024/05/12 20:58:50 by mkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	init_player_dir_plane(t_data *d, int player_angle_deg, int fov_deg)
 
 	if (fov_deg < 2 || fov_deg >= 180)
 	{
-		ft_putstr_fd("Error\nInvalid FOV.", 1);
+		ft_putstr_fd("\033[1;31mError\nInvalid FOV.\033[0m\n", 1);
 		exit(1);
 	}
 	d->player.dir.x = 1;

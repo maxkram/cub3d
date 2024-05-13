@@ -14,16 +14,19 @@
 
 t_value	check_texture(mlx_texture_t *texture)
 {
+	const char	*sq_err;
+	const char	*sz_err;
+
+	sq_err = "\033[1;31mTexture is not a square\033[0m\n";
+	sz_err = "\033[1;31mTexture is not between %d and %d pixels\033[0m\n";
 	if (texture->height != texture->width)
 	{
-		printf("Error\nTexture is not a square\n");
+		printf("%s", sq_err);
 		return (1);
 	}
-	if (texture->height < 32
-		|| texture->height > 64)
+	if (texture->height < 32 || texture->height > 64)
 	{
-		printf("Error\nTexture is not between %d and %d pixels in side length\
-		\n", 32, 64);
+		printf(sz_err, 32, 64);
 		return (1);
 	}
 	return (0);
